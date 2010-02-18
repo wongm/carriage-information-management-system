@@ -1,0 +1,313 @@
+/* Marcus Wong */
+
+/* admin only ------------------------------------------------ */
+#user_info {
+	position: absolute;
+	right: 1em;
+	top: 0;
+}
+
+/* general page layout stuff ------------------------------------------------ */
+body {
+	background: white; 
+	color: black;
+	margin: 0px;
+}
+#container {
+	width: 100%;
+}	
+#header {
+	line-height: 1em;
+	border: #999;
+	border-style: solid;
+	border-width: 0px 0px 2px 0;
+}
+#navigation { 
+	position:absolute;
+	left: 5px;
+	top: 4.5em;
+	text-align:center; 
+	width: 140px; 
+}
+#content {
+	padding: 10px;
+	background:#EEE;
+	color: inherit;
+	min-height: 300px;
+}
+#content p {
+	width: 95%;
+	line-height: 1.3em;
+}
+#footer { 
+	margin: 10px 0 0 0;
+	text-align:center;
+	font-size: 0.8em;
+}
+.centeredTable, .linedTable {
+	margin: auto;
+	width: 95%;
+}
+.error {
+	text-align: center;
+	padding: 5px;
+	background: red;
+	color: white; 
+	font-weight: bold;
+	font-size:15px;
+	text-decoration: none;
+}
+
+.updated {
+	text-align: center;
+	padding: 5px;
+	background: lightgreen;
+	font-weight: bold;
+	font-size:15px;
+	text-decoration: none;
+}
+a.error:hover {
+	text-decoration:underline;
+	color: white;
+}
+/* image formatting stuff --------------------------------------------------- */
+img {
+	border: none;
+}
+/* for the link bar along the top ------------------------------------------- */
+.headbar {
+	font-size : 11px;
+	width: 100%;
+	border: #999;
+	border-style: solid;
+	border-width: 1px 0;
+	min-height: 2em;
+	background-color: #FAFAFA;
+}
+.headbar a {
+	text-decoration: none;
+}
+.headbar a:hover {
+	text-decoration: underline;
+}
+/* front page ----------------------------------------------------------------*/
+p.intro {
+	text-align:center;
+	padding: 1em 0 0 0;
+	clear:both;
+}
+h3.intro {
+	font-size:1.5em;
+	text-align:center;
+}
+/* site menu formatting stuff --------------------------------------------------
+	based on http://www.projectseven.com/tutorials/css/uberlinks/index.htm */
+.menu a {
+	height: 1%;
+}
+ul.sitemenu{
+	margin: 0; 
+	padding: 2px 0 5px 0; 
+	list-style-type: none; 
+}
+.menu a {
+	display: block;
+	padding: 3px;
+	border: 1px solid;
+	border-color: #ddd #000 #000 #ddd;
+	background-color: #EEE;
+	color: #336633;
+	text-decoration: none;
+}
+.menu a:hover {
+	background-color: #336633;
+	color: white;
+}
+.group a {
+	text-align:left;
+}
+#navigation a.sub {
+	font-weight: bold;
+	font-size: 1.1em;
+	color:#336633;
+} 
+/* font style attributes ---------------------------------------------------- */
+body td, th, p, div, input, form, textarea {
+	font-family:verdana,helvetica, sans-serif;
+	font-size:12px;
+}
+h1, h2, h3, h4, h5, .h4 {
+	background-color: inherit;
+	text-decoration: none;
+	color:#336633;
+}
+h1 {
+	line-height: 0;
+	padding:.1em 0 0;
+}
+h1 a {
+	font-size:30px;
+	text-decoration: none;
+	color:#336633;
+}
+h1 a:hover {
+	text-decoration: underline;
+}
+h2 {
+	font-size:22px;
+}
+h3 {
+	font-size:20px; 
+	text-align:center;
+}
+h4 {
+	font-size:15px;
+	margin: 1.2em 0 0.5em;
+}
+h4 a {
+	text-decoration: none;
+	color:#336633;
+}
+h4 a:hover {
+	text-decoration: underline;
+}
+.photocredit {
+	font-style:italic; 
+	font-size:xx-small;
+}
+
+h5 {
+	font-size:13px;
+	display: inline;
+	vertical-align: bottom;
+}
+a {
+	color:black;
+	background-color: inherit;
+}
+a:hover {
+	color:#336633;
+	background-color: inherit;
+	text-decoration: none;
+}
+.credit {
+	font-size: .8em;
+	line-height: 1em;
+}
+/* for sitemap ---------------------------------------------------------------*/
+#sitemap li {
+	line-height: 1.5em;
+}
+/* 'lineguide' and 'location' formatting stuff ------------------------------ */
+.linedTable td, th {
+	padding: .3em 10px;
+}
+.linedTable .date {
+	width: 18em;
+}
+.linedTable .code {
+	width: 4em;
+}
+.linedTable .f {
+	text-align: center;
+	width: 40px;
+}
+.linedTable .fx {
+	width: 12em;
+	text-align: center;
+}
+.linedTable .x {
+	background-color: white;
+}
+.linedTable .y {
+	background-color: #F5F7F5;
+}
+
+/* gallery stuff */
+.i {
+	background-color: #FAFAFA;
+	padding: 10px !important;
+	vertical-align: top;
+}
+.i h4 {
+	padding: 5px 0;
+	margin: 0;
+}
+.i h4:hover {
+	text-decoration: underline;
+}
+.locations .diagramTable .diagram {
+	padding: 5px 0;
+	background: white;
+}
+.centeredTable td{
+	padding: 5px 10px;
+	text-align: center;
+	width: 33%;
+}
+.locations .datatable {
+	line-height: 1.5em;
+	width: 95%;
+	margin: 0.5em auto 1em auto;
+}
+/* for 'tab' section  ------------------------------------------------------ */
+.shadetabs{
+padding: 3px 0;
+margin-left: 0;
+margin-top: 10px;
+margin-bottom: 0;
+list-style-type: none;
+text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+.shadetabscenter{
+padding: 3px 0;
+margin-left: 0;
+margin-top: 10px;
+margin-bottom: 0;
+list-style-type: none;
+text-align: center; /*set to left, center, or right to align the menu as desired*/
+}
+.shadetabs li{
+display: inline;
+margin: 0;
+}
+.shadetabs li a {
+text-decoration: none;
+padding: 3px 7px;
+margin-right: 3px;
+border: 1px solid #778;
+color: #2d2b2b;
+background-color: #EEE;
+}
+.shadetabs li a:hover {
+background-color: #336633;
+color: white;
+}
+.shadetabs li.selected a:hover {
+background-color: #FAFAFA;
+color: #336633;
+}
+.shadetabs li.selected {
+position: relative;
+top: 1px;
+}
+.shadetabs li.selected a{ /*selected main tab style */
+background-color: #FAFAFA;
+border-bottom-color: #FAFAFA;
+color: #336633;
+}
+.tabcontentstyle{ /*style of tab content container*/
+border: 1px solid gray;
+margin-bottom: 1em;
+padding: 10px;
+background-color: #FAFAFA;
+}
+@media print {
+.tabcontent {
+display:block!important;
+}
+}
+
+
+/* IE only style */
+/*\*/ @import "style-ie.css"; /**/

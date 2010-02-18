@@ -1,0 +1,299 @@
+@charset "utf-8";
+
+/* for the back / forward link bar along the top ------------------------------------------- */
+.navigation, .imgnav { 
+  padding: 5px;
+  background: #EEEEEE;
+  height: 1.2em;
+}
+.navigation .next { float: right; text-align: left; }
+.navigation .prev { float: left; text-align: right; }
+.navigation A, .navigation A:hover, .navigation A:active { color: black; }
+
+/* CSS Document */
+.photoleft {
+	float: left;
+	margin: 5px 10px;
+}
+.photoright {
+	float: right;
+	clear: none;
+	margin: 5px 10px;
+}
+
+a:link {
+	text-decoration: none;
+
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+
+body  {
+	font-family: sans-serif;
+	font-size: 12px;
+	background-color: #FFFFFF;
+	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	padding: 0;
+	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	color: #000000;
+}
+#container { 
+	width: 100%;  /* using 20px less than a full 800px width allows for browser chrome and avoids a horizontal scroll bar */
+	margin: 0 auto; /* the auto margins (in conjunction with a width) center the page */
+	text-align: left; /* this overrides the text-align: center on the body element. */
+} 
+#header { 
+	background: #CC0000; 
+	padding: 5px;
+	height: 80px;
+	color: #FFFFFF;
+} 
+
+#HeaderSearch {
+	float: right;
+	width: auto;
+	font-weight: bold;
+}
+
+#subheader { 
+	background-image: url(../images/categorybar.png);
+	background-color: #990099;
+	color: #FFFFFF;
+	font-size: 14px;
+	height: 20px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+} 
+
+#subheader a {
+	color: #FFFFFF;
+}
+
+#header h1 {
+	margin: 0; /* zeroing the margin of the last element in the #header div will avoid margin collapse - an unexplainable space between divs. If the div has a border around it, this is not necessary as that also avoids the margin collapse */
+}
+
+#header a {
+	color: #FFFFFF;
+}
+
+#LeftColumn {
+	float: left; /* since this element is floated, a width must be given */
+	width: 165px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+	background: #8C8C96; /* the background color will be displayed for the length of the content in the column, but no further */
+}
+
+#RightColumn {
+	float: right; /* since this element is floated, a width must be given */
+	width: 200px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
+	background: #8C8C96; /* the background color will be displayed for the length of the content in the column, but no further */ /* padding keeps the content of the div away from the edges */
+	height: 800px;
+}
+
+#RightColumnNewsHeader {
+	height: 25px;
+	background-image:url(../images/categorybar.png);
+	background-color:#990099;
+	font-weight: bold;
+	font-size: 18px;
+	color:#FFFFFF;
+	vertical-align: middle;
+	text-indent: 5px;
+}
+
+#RightColumnNewsText {
+	height: 150px;
+	font-size: 14px;
+	color:#FFFFFF;
+	text-indent: 5px;
+}
+
+#RightColumnFleetHeader {
+	height: 25px;
+	background-image: url(../images/categorybar.png);
+	background-color:#990099;
+	font-weight: bold;
+	font-size: 18px;
+	color:#FFFFFF;
+	vertical-align: middle;
+	text-indent: 5px;
+}
+
+#RightColumnFleetText {
+	height: 150px;
+	font-size: 14px;
+	color:#FFFFFF;
+	text-indent: 5px;
+}
+
+#mainContent {
+	background-color: #FFFFFF; 
+	vertical-align: top;
+	margin-top: 1px;
+	margin-left: 167px;
+	min-height: 500px;
+	width: 100%;
+	margin-right: 200px; /* the right and left margins on this div element creates the two outer columns on the sides of the page. No matter how much content the LeftColumn divs contain, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the LeftColumn spaces when the content in each LeftColumn ends. */
+ /* remember that padding is the space inside the div box and margin is the space outside the div box */
+} 
+
+.mainContentHeading {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+#footer { 
+	padding: 0 10px 0 20px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+	background-image: url(../images/categorybar.png);
+	background-color: #990099;
+	color: #FFFFFF;
+	font-weight: bold;
+	height: 20px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+} 
+
+#footer p { 
+	padding: 0 10px 0 20px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
+	background-image: url(../images/categorybar.png);
+	color: #FFFFFF;
+	height: 20px;
+} 
+
+.fltrt { /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class should be placed on a div or break element and should be the final element before the close of a container that should fully contain a float */
+	clear:both;
+    height:0;
+    font-size: 1px;
+    line-height: 0px;
+}
+
+#HeaderLogo {
+	float: left;
+}
+
+.RightHandColumnHeadings {
+color: #FFFFFF;
+font-weight: bold;
+font-size: 16px;
+}
+
+p.c2 {text-align: center}
+h1.c1 {text-align: center}
+
+img {
+	border: none;
+}
+
+/* FOR MENU */
+
+.arrowlistmenu{
+width: 165px; /*width of accordion menu*/
+}
+
+.arrowlistmenu .menuheader{ /*CSS class for menu headers in general (expanding or not!)*/
+font: bold 14px Arial;
+color: white;
+background: #000000 url(../images/titlebar.png) repeat-x center left;
+margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+text-transform: uppercase;
+padding: 4px 0 4px 10px; /*header text is indented 10px*/
+/*cursor: hand;)*/
+cursor: pointer;
+}
+
+.arrowlistmenu .openheader{ /*CSS class to apply to xpand header when it's expanded*/
+background-image: url(../images/titlebar-active.png);
+background-color:#990099
+}
+
+.arrowlistmenu ul{ /*CSS for UL of each sub menu*/
+list-style-type: none;
+margin: 0;
+padding: 0;
+margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+}
+
+.arrowlistmenu ul li{
+padding-bottom: 2px; /*bottom spacing between menu items*/
+}
+
+.arrowlistmenu ul li a{
+color: #FFFFFF;
+display: block;
+padding: 2px 0;
+padding-left: 19px;/* padding-left: 19px; /*link text is indented 19px*/
+background: url(../images/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+text-decoration: none;
+font-weight: bold;
+border-bottom: 1px solid #dadada;
+font-size: 90%;
+}
+
+.arrowlistmenu ul li a:visited{
+color: #FFFFFF;
+/*#A70303*/
+}
+
+.arrowlistmenu ul li a:hover{ /*hover state CSS*/
+color: #000000; 
+/*#A70303*/
+background-color: #F3F3F3;
+}
+
+/* MW stuff */
+
+.linedTable td, th {
+	padding: .3em 10px;
+}
+.linedTable .date {
+	width: 18em;
+}
+.linedTable .code {
+	width: 4em;
+}
+.linedTable .f {
+	text-align: center;
+	width: 40px;
+}
+.linedTable .fx {
+	width: 12em;
+	text-align: center;
+}
+.linedTable .x {
+	background-color: white;
+}
+.linedTable .y {
+	background-color: #F5F7F5;
+}
+
+
+
+.centeredTable td{
+	padding: 5px 10px;
+	text-align: center;
+	width: 33%;
+}
+
+.centeredTable {
+	margin: auto;
+	width: 95%;
+}
+
+#LeftColumn h3 {
+	margin:1px;
+}
