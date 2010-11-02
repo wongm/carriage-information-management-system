@@ -1,0 +1,6 @@
+# Zenphoto theme definition file
+name::V/LineCars.com
+author::Marcus Wong
+version::1.0.0
+date::11/26/2008
+desc::Based upon the 'Sub-Albums Testing Theme' by Tristan Harward. It has been tested with mod_rewrite both on and off.  Image thumbnails should be set somewhere between 100 and 150 pixels, and the number of images and albums per page should be a multiple of three. The theme doesn't allow comments on images or albums. Zenpage is supported, but the "News on Zenphoto index" setting is not supported. Required plugins include: contact_form v1.1.1 and image_album_statistics v1.0.5.2

@@ -1,0 +1,131 @@
+/* Marcus Wong */
+
+/* News
+------------------------------ */
+#sidebar {
+position: absolute;
+right: 1em;
+top: 60px;
+width: 200px;
+height: 100%;
+background-color: white;
+margin-right: 4px;
+padding: 0 0 0 10px;
+}
+
+#news {
+margin-right: 220px;
+}
+
+/* Admin Toolbox
+------------------------------ */
+#admin, #admin_data{
+	position: fixed;
+  _position: absolute;
+	right: 0px;
+	top: 0px;
+	width: 130px;
+	border-bottom: 1px solid #E6E6DF;
+	border-left: 1px solid #E6E6DF;
+	background: #fff;
+    z-index: 2; 	text-align: left;
+}
+#admin_data{
+	top: 0px;
+	padding-top: 20px;
+	z-index: 1;
+	line-height: 1.6em;
+
+}
+#admin h3 {
+	font-size:12px;
+	color: #999;
+	margin:0;
+	padding:0; text-align: center;
+}
+#admin h3:hover { color: #036; }
+
+
+/* gallery stuff */
+.i {
+	background-color: #FAFAFA;
+	padding: 10px !important;
+	vertical-align: top;
+}
+.i h4 {
+	padding: 5px 0;
+	margin: 0;
+}
+.i h4:hover {
+	text-decoration: underline;
+}
+
+.centeredTable td {
+	padding: 5px 10px;
+	text-align: center;
+	width: 33%;
+}
+
+label {
+	padding: 0 0 0 2em;
+}
+.topbar h3{
+	text-align: left;
+	margin: 0 0 5px 0;
+}
+.topbar {
+	margin-top: 10px;
+}
+.album, .image {
+	background-color: #F5F6F5;
+	padding: 10px !important;
+}
+.centeredTable {
+	margin-top: 5px;
+}
+.album h4, .image h4 {
+	padding: 5px 0;
+	margin: 0;
+}
+.pages {
+	margin: 10px 0;
+}
+.imageDisplay {
+	background-color: white;
+	padding: 10px !important;
+}
+.exif {
+	text-align: center;
+	background-color: #F5F6F5;
+	font-size: 0.9em;
+	padding: 5px;
+	margin: 5px 25%;
+}
+#righthead {
+	text-align: right;
+	vertical-align: top;
+	width: 15em;
+}
+.nextables A.next { 
+	float: right;
+	text-align: left; 
+	height: 100%;
+}
+.nextables A.prev { 
+	float: left; 
+	text-align: right; 
+	height: 100%;
+}
+.nextables A:hover, .nextables A:active { 
+	text-decoration: none; 
+}
+#thumbnav td {
+	width: 25%;
+}
+.nextables { 
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px 0 solid white;
+  background: #FAFAFA;
+  width: 100%;
+}
