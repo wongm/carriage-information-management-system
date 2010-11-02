@@ -2,7 +2,7 @@
 //start timer
 $time = round(microtime(), 3);
 global $custom;
-include_once("../common/vlinecars-definitions.php");
+include_once("common/vlinecars-definitions.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -64,10 +64,27 @@ if ( !$withcomments && !is_single() ) {
 <form action="" method="post">Search <input name="searchterm" type="text" /> <input name="StartSearch" type="button" value="Go" /></form>
 </div></td></tr>
 <tr><td colspan="2" id="subheader">
-<a href="/" title="V/LineCars.com Home">Home</a> &raquo; <a href="/news/" title="News">News</a> <?php if ( is_single() ) { ?> &raquo; <a href="/news/archives" title="Archives">Archives</a> <?php } ?>
+<?php 
+$type = $_GET['type'];
+
+switch ($type)
+{
+	case 'base':
+	case 'misc':
+		$breadcrumb = '';
+		break;
+	case 'operations':
+		$breadcrumb = ' &raquo; <a href="/operations/" title="Operations">Operations</a> ';
+		break;
+	default:
+		$breadcrumb = ' &raquo; <a href="/news/" title="News">News</a> ';
+		break;
+}
+?>
+<a href="/" title="V/LineCars.com Home">Home</a><?php echo $breadcrumb; ?><?php if ( is_single() ) { ?> &raquo; <a href="/news/archives" title="Archives">Archives</a> <?php } ?>
 </td></tr>
 <tr><td id="LeftColumn">
-<?php include_once('../common/nav.php');
+<?php include_once('common/nav.php');
 ?>
 </td>
 <td id="mainContent">
