@@ -12,7 +12,7 @@ $time = round(microtime(), 3);
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?=getPageTitle($pageTitle)?></title>
+<title><?=getCIMSPageTitle($pageTitle)?></title>
 <script type="text/javascript" src="/js/jquery-1.2.2.pack.js"></script>
 <script type="text/javascript" src="/js/ddaccordion.js"></script>
 <script type="text/javascript">//<![CDATA[ 

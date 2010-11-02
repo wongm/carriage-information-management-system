@@ -18,7 +18,7 @@ function drawTitle($title)
 	echo "<h2>$title</h2>";
 }
 
-function getPageTitle($pageTitle)
+function getCIMSPageTitle($pageTitle)
 {
 	$toreturn = SITE_NAME;
 	$size = sizeof($pageTitle);
