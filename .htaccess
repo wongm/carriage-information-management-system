@@ -21,9 +21,15 @@
   # No need for an explicit rewrite rule
   # RewriteRule index.html$ index.html [L]
   
+  RewriteRule ^misc/contact/?$       						gallery/index.php?p=contact&type=misc [L,QSA]
   RewriteRule ^misc/([-a-zA-Z0-9]*)/?$       						gallery/index.php?p=pages&type=misc&title=$1 [L,QSA]
   RewriteRule ^operations/([-a-zA-Z0-9]*)/?$       				gallery/index.php?p=pages&type=operations&title=$1 [L,QSA]
   RewriteRule ^operations/?$       						gallery/index.php?p=pages&type=operations&title=operations [L,QSA]
+  
+  RewriteRule ^news/?$       						gallery/index.php?p=news [L,QSA]
+  RewriteRule ^news/([-a-zA-Z0-9]*)/?$       		gallery/index.php?p=news&title=$1 [L,QSA]
+  RewriteRule ^news/category/([-a-zA-Z0-9]*)/?$       		gallery/index.php?p=news&category=$1 [L,QSA]
+  RewriteRule ^news/category/([-a-zA-Z0-9]*)/([0-9]*)/?$       		gallery/index.php?p=news&category=$1&page=$2 [L,QSA]
   
   RewriteRule ^region/station/(.*)/?$       							locations-tool.php?name=$1 [L,QSA]
   RewriteRule ^region/(.*)/?$       							lineguide-tool.php?line=$1 [L,QSA]

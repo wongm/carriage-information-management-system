@@ -29,7 +29,10 @@ define ('SITE_NAME', 'V/LineCars.com');
 // what positon are these links in the side menu bar?
 // this is so they drop down automatically for the relevant sections
 define ('NEWS_MENU_TAB', '0');
+define ('OPERATIONS_MENU_TAB', '5');
 define ('GALLERY_MENU_TAB', '7');
+define ('MISC_MENU_TAB', '8');
+
 
 // get what position in the sidebar a given item is
 // this is so they drop down automatically for the relevant sections
@@ -40,24 +43,24 @@ function getMenuIndex($pageTitle)
 	switch ($pageTitle[0][0])
 	{
 		case 'Carriages':
-			return  1;
+			return 1;
 		case 'Carriage Sets':
-			return  2;
+			return 2;
 		case 'Locomotives':
-			return  3;
+			return 3;
 		case 'Railcars':
-			return  4;	
+			return 4;	
 		case 'Operations':
-			return  5;	
+			return OPERATIONS_MENU_TAB;
 		case 'Regions':
 		case 'Stations':
-			return  6;
+			return 6;
 		case 'Contact Me':
 		case 'Sitemap':
 		case 'Links':
 		case 'Glossary':
 		case 'About the Site':
-			return  8;
+			return MISC_MENU_TAB;
 	}
 		
 	return '';

@@ -136,6 +136,7 @@ body  {
 #mainContent {
 	background-color: #FFFFFF; 
 	vertical-align: top;
+	padding-left: 5px;
 	margin-top: 1px;
 	margin-left: 167px;
 	min-height: 500px;
@@ -199,64 +200,77 @@ img {
 	border: none;
 }
 
-/* FOR MENU */
+/* Fonts
+------------------------------ */
+h1 {
+	font-size:30px;
+	padding:.1em 0 0;
+}
+h2 {
+	font-size:24px;
+	text-align: left;
+	margin: 0 0 5px 0;
+}
+h3 {
+	font-size:20px; 
+}
+h4 {
+	font-size:15px;
+	margin: 1.2em 0 0.5em;
+}
 
+/* Sidebar menu
+------------------------------ */
 .arrowlistmenu{
-width: 165px; /*width of accordion menu*/
+	width: 165px; /*width of accordion menu*/
 }
-
-.arrowlistmenu .menuheader{ /*CSS class for menu headers in general (expanding or not!)*/
-font: bold 14px Arial;
-color: white;
-background: #000000 url(../images/titlebar.png) repeat-x center left;
-margin-bottom: 10px; /*bottom spacing between header and rest of content*/
-text-transform: uppercase;
-padding: 4px 0 4px 10px; /*header text is indented 10px*/
-/*cursor: hand;)*/
-cursor: pointer;
+.arrowlistmenu .menuheader { /*CSS class for menu headers in general (expanding or not!)*/
+	font: bold 14px Arial;
+	color: white;
+	background: #000000 url(../images/titlebar.png) repeat-x center left;
+	margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+	text-transform: uppercase;
+	padding: 4px 0 4px 10px; /*header text is indented 10px*/
+	/*cursor: hand;)*/
+	cursor: pointer;
 }
-
-.arrowlistmenu .openheader{ /*CSS class to apply to xpand header when it's expanded*/
-background-image: url(../images/titlebar-active.png);
-background-color:#990099
+.arrowlistmenu .openheader { /*CSS class to apply to xpand header when it's expanded*/
+	background-image: url(../images/titlebar-active.png);
+	background-color:#990099
 }
-
-.arrowlistmenu ul{ /*CSS for UL of each sub menu*/
-list-style-type: none;
-margin: 0;
-padding: 0;
-margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+.arrowlistmenu ul { /*CSS for UL of each sub menu*/
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
 }
-
-.arrowlistmenu ul li{
-padding-bottom: 2px; /*bottom spacing between menu items*/
+.arrowlistmenu ul li {
+	padding-bottom: 2px; /*bottom spacing between menu items*/
+	padding-left: 5px;
 }
 
 .arrowlistmenu ul li a{
-color: #FFFFFF;
-display: block;
-padding: 2px 0;
-padding-left: 19px;/* padding-left: 19px; /*link text is indented 19px*/
-background: url(../images/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
-text-decoration: none;
-font-weight: bold;
-border-bottom: 1px solid #dadada;
-font-size: 90%;
+	color: #FFFFFF;
+	display: block;
+	padding: 2px 0;
+	padding-left: 19px;/* padding-left: 19px; /*link text is indented 19px*/
+	background: url(../images/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+	text-decoration: none;
+	font-weight: bold;
+	border-bottom: 1px solid #dadada;
+	font-size: 90%;
 }
-
 .arrowlistmenu ul li a:visited{
-color: #FFFFFF;
-/*#A70303*/
+	color: #FFFFFF;
 }
 
 .arrowlistmenu ul li a:hover{ /*hover state CSS*/
-color: #000000; 
-/*#A70303*/
-background-color: #F3F3F3;
+	color: #000000; 
+	background-color: #F3F3F3;
 }
 
-/* MW stuff */
-
+/* Lined tables
+------------------------------ */
 .linedTable td, th {
 	padding: .3em 10px;
 }
@@ -280,20 +294,43 @@ background-color: #F3F3F3;
 .linedTable .y {
 	background-color: #F5F7F5;
 }
-
-
-
 .centeredTable td{
 	padding: 5px 10px;
 	text-align: center;
 	width: 33%;
 }
-
 .centeredTable {
 	margin: auto;
 	width: 95%;
 }
-
-#LeftColumn h3 {
+#LeftColumn p {
 	margin:1px;
 }
+
+/* Lighbox
+------------------------------ */
+#overlay { background-image: url(/images/overlay.png); }
+
+* html #overlay {
+	background-color: #000;
+	back\ground-color: transparent;
+	background-image: url(/images/blank.gif);
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/overlay.png", sizingMethod="scale");
+}
+
+#lightbox {
+	background-color:#eee;
+	padding: 10px;
+	border-bottom: 2px solid #666;
+	border-right: 2px solid #666;
+}
+
+#lightboxDetails {
+	font-size: 0.8em;
+	padding-top: 0.4em;
+}
+	
+#lightboxCaption{ float: left; }
+#keyboardMsg{ float: right; }
+#lightbox img{ border: none; } 
+#overlay img{ border: none; }

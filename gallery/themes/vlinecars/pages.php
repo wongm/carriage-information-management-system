@@ -8,22 +8,24 @@ if (substr($pageTitle, $len-2, 1) == '-')
 	$pageTitle = substr($pageTitle, 0, $len-3);
 }
 include_once('header.php'); ?>
-<table class="headbar">
-	<tr><td><a href="<?=getGalleryIndexURL();?>" title="Gallery Index"><?=getGalleryTitle();?></a>
-		<?php printPageTitle(" &raquo; "); ?>
-		<?php printCurrentNewsCategory(" &raquo; Category - "); ?>
-		<?php printNewsTitle(" &raquo; "); ?>
-	</td><td id="righthead"><?php printSearchBreadcrumb(true); ?></td></tr>
-</table>
-<div id="news">
-<h2><?php printPageTitle(); ?></h2>
+<a href="<?=getGalleryIndexURL();?>" title="Gallery Index"><?=getGalleryTitle();?></a>
+<?php printPageTitle(" &raquo; "); ?>
+<?php printCurrentNewsCategory(" &raquo; Category - "); ?>
+<?php printNewsTitle(" &raquo; "); ?>
 <?php 
-printPageContent(); 
+include_once('midbit.php'); 
+?>
+<div class="topbar"><h2><?php printPageTitle(); ?></h2></div>
+<div id="news">
+	<div class="newsarticle"> 
+		<p><?php printPageContent(); ?></p>
+	</div>
+<?php 
 printCodeblock(1); 
 
 if (getOption('zenpage_comments_allowed')) { ?>
 				<div id="comments">
-		<?php $num = getCommentCount(); echo ($num == 0) ? "" : ("<hr/><h2>".gettext("Comments")." ($num)</h2>"); ?>
+		<?php $num = getCommentCount(); echo ($num == 0) ? "" : ("<hr/><h5>".gettext("Comments")." ($num)</h5>"); ?>
 			<?php while (next_comment()){  ?>
 			<div class="comment">
 				<div class="commentmeta">
@@ -33,9 +35,7 @@ if (getOption('zenpage_comments_allowed')) { ?>
 					<?php echo getCommentBody();?>
 				</div>
 				<div class="commentdate">
-					<?php echo getCommentDate();?>
-					,
-					<?php echo getCommentTime();?>
+					<?php echo getCommentDateTime();?>
 								<?php printEditCommentLink(gettext('Edit'), ' | ', ''); ?>
 				</div>
 			</div>
@@ -90,8 +90,6 @@ if (getOption('zenpage_comments_allowed')) { ?>
 	</div>			<?php } ?>
 	
 <?php 
-	echo '</div><div id="sidebar">';
-	include("sidebar.php");
 	echo '</div>';
-	echo "<p>Viewed ".zenpageHitcounter('pages')." times.</p>";
+	echo "<p>Viewed ".getHitcounter()." times.</p>";
 	include("footer.php"); ?>
