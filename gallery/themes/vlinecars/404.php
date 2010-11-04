@@ -7,6 +7,7 @@ header("Status: 404 Not Found");
  
 $startTime = array_sum(explode(" ",microtime())); 
 $pageTitle = ' - 404 Page Not Found';
+$selectedTabId = -1;
 include_once('header.php');
 ?>
 404 Page Not Found

@@ -11,6 +11,18 @@
   
   RewriteRule ^admin/?$       										gallery/zp-core [L,QSA]
   
+  # 404 - Page not found
+  ErrorDocument 404 /404.html 
+  
+  # 400 - Bad request
+  # 500 - Internal Server Error 
+  ErrorDocument 400 /error.html 
+  ErrorDocument 500 /error.html 
+  
+  # 401 - Authorization Required
+  # 403 - Forbidden directory
+  ErrorDocument 401 /forbid.html 
+  ErrorDocument 403 /forbid.html 
   
   RewriteRule ^index.php?$       									gallery/index.php?p=home [L,QSA]
   

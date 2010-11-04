@@ -151,6 +151,9 @@ img {
 #query-input {
 	width: 15em;
 }
+.gsc-resultsHeader {
+	border: 0px !important;;
+}
 
 /* Fonts
 ------------------------------ */
