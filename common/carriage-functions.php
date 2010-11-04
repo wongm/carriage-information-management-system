@@ -47,6 +47,7 @@ function drawCarriage($car)
 		extract(getCarriage($car));
 		
 		$pageTitle = array(array("Carriages", '/carriages'), array("$type Type", "/carriage/type/$type"), array("Car $car", ''));
+		$editLink = "carriage/editCarriage.php?id=$car";
 		include_once("common/header.php");
 		drawTitle("Carriage $type$car");
 		getDescription("<i>$typedescription</i>");

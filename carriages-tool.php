@@ -29,6 +29,7 @@ include_once("common/gallery-functions.php");
 	elseif ($type != '')
 	{
 		$pageTitle = array(array("Carriages", '/carriages'), array("$type Type", ''));
+		$editLink = "carriage-type/editCarriageType.php?id=$type";
 		include_once("common/header.php");
 		drawCarriageType($type);
 	}
@@ -36,6 +37,7 @@ include_once("common/gallery-functions.php");
 	elseif ($display == 'loose-cars' OR $display == 'power-vans' OR $display == 'parcel-vans' )
 	{
 		$pageTitle = array(array("Carriages", '/carriages'), array(getCarriageFamilyTitle($display), ''));
+		$editLink = "family/editFamily.php?id=$display";
 		include_once("common/header.php");
 		drawCarriageFamily($display);
 	}
@@ -43,6 +45,7 @@ include_once("common/gallery-functions.php");
 	elseif ($display == 'number')
 	{
 		$pageTitle = array(array("Carriages", '/carriages'), array("By Number", ''));
+		$editLink = "carriage/listCarriage.php";
 		include_once("common/header.php");
 		drawTitle('Carriages By Number');
 		echo '<h4>In service</h4>';
@@ -55,13 +58,16 @@ include_once("common/gallery-functions.php");
 	elseif ($display == 'type')
 	{
 		$pageTitle = array(array("Carriages", '/carriages'), array("By Type", ''));
+		$editLink = "carriage-type/listCarriageType.php";
 		include_once("common/header.php");
 		drawTitle('Carriages By Type');
 		drawObjectsOfType(getAllObjectsOfTable('carriage_type', '', 'id'), 'current', CARRIAGE_TYPE_PAGE);
 	}
+	// carriage family
 	elseif ($display != '')
 	{
 		$pageTitle = array(array("Carriages", '/carriages'), array(getCarriageFamilyTitle($display), ''));
+		$editLink = "family/editFamily.php?id=$display";
 		include_once("common/header.php");
 		drawCarriageFamily($display);
 	}
