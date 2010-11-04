@@ -73,9 +73,15 @@ function getMenuIndex($pageTitle)
 
 function printGoogleSearchBox()
 {
+	// if we are on the search results page
+	// then include the search term in the box
+	if (strpos($_SERVER['PHP_SELF'], 'search.php') > 0)
+	{
+		$value = $_GET['q'];
+	}
 ?>
 <form method="get" action="/misc/search">
-	<input name="q" size="50" id="query-input" autocomplete="off" />
+	<input name="q" size="50" value="<?php echo $value; ?>" id="query-input" autocomplete="off" />
 	<button type="submit">Search</button>
 </form>
 <?php
