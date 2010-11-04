@@ -1,5 +1,5 @@
 </div><div id="footer">
-<a href="/index.php">Site Home</a> :: <a href="/backend/admin.php">Admin Home</a><br/>
+<a href="/index.php">Site Home</a> :: <a href="/backend">Admin Home</a><br/>
 <?php 	//display page generation time
 	// start $time = round(microtime(), 3);
 $time2 = round(microtime(), 3);

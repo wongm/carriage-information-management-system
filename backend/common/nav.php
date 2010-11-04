@@ -1,9 +1,8 @@
 <ul class="sitemenu">
-	<li class="menu"><a href="/backend/admin.php">Admin Home</a></li>
+	<li class="menu"><a href="/backend">Admin Home</a></li>
 </ul>
 <ul class="sitemenu">
 	<li class="menu"><a href="/backend/config/listConfig.php">Config Variables</a></li>
-	<li class="menu"><a href="/backend/articles/listArticles.php">Ops / Misc</a></li>
 </ul>
 <ul class="sitemenu">
 	<li class="menu"><a href="/backend/carriage/listCarriage.php">Carriages</a></li>

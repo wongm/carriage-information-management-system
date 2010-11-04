@@ -1,104 +1,49 @@
 <?php 
-
-session_start();
-$_SESSION['authorised'] = false;
-
-// test for localhost
-$server = $_SERVER['HTTP_HOST'];
-if ($server == 'z' OR $server == 'localhost')
-{
-	$localhost = true;
-	$_SESSION['authorised'] = true;
-	$url = "/backend/admin.php";
-	$url = "http://".$_SERVER['HTTP_HOST'].$url;
-	header("Location: ".$url,TRUE,302);
-}
-
-if (isset($_REQUEST['username']))
-{
-	$username = addslashes($_REQUEST['username']);
-	$password = md5(addslashes($_REQUEST['password']));
-	include_once("common/dbConnection.php");
-
-	$sql = "SELECT  * FROM users WHERE username = '$username' AND password = '$password'";
-	//echo $sql;
-
-	if (MYSQL_NUM_ROWS(MYSQL_QUERY($sql)) == 1)
-	{
-		$_SESSION['authorised'] = true;
-		$url = "/backend/admin.php";
-		$url = "http://".$_SERVER['HTTP_HOST'].$url;
-		header("Location: ".$url,TRUE,302);
-	}
-	else
-	{
-		fail();
-	}
-}
-else
-{
-	fail();
-}
-
-function fail()
-{
-	session_unregister($_SESSION['username']);
-	session_unregister($_SESSION['password']);
-	session_unregister($_SESSION['authorised']);
-	session_destroy();
-	
-	$pageHeading = 'Site Management';
+$pageTitle = "Site Management";
+include_once("common/header.php");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
-<title>CIMS - <?php echo $pageTitle;?></title>
-<link rel="stylesheet" type="text/css" href="/backend/common/style.css" media="all" title="Normal" />
-<script src="/backend/common/functions.js" type="text/javascript"></script>
-<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"/>
-<meta name="author" content="Marcus Wong" />
-<meta name="description" content="Carriage Infomation Management System"" />
-<meta name="keywords" content="railways trains victoria" />
-</head>
-<body>
-<table id="container" cellspacing="5">
-<tr><td id="header" colspan="2">
-<h1><?php echo $pageHeading; ?></h1>
-</td></tr>
-<tr><td width="140"></td>
-<td id="big" valign="top">
-<div id="content">
-<table>
-<tr><td>
-<form name="login" method="POST" action="index.php">
+<h4>Dates</h4><hr/>
+Date are formatted 'YYYY-MM-DD'
 
-<table cellspacing="2" cellpadding="2" border="0" width="100%">
-	<tr valign="top" height="20">
-		<td align="right"> <b> Username :  </b> </td>
-		<td> <input type="text" name="username" size="20" value="">  </td> 
-	</tr>
-	<tr valign="top" height="20">
-		<td align="right"> <b> Password :  </b> </td>
-		<td> <input type="password" name="password" size="20" value="">  </td> 
-	</tr>
-	<tr valign="top" height="20"><td align="right"><input type="submit" name="submitEnterUserForm" value="Login"></td><td></td></tr>
-</table>
-</form>
-</td></tr>
-</table>
-</div><div id="footer">
-<a href="/index.php">Home</a> :: <a href="/sitemap.php">Sitemap</a><br/>
-<?php 	//display page generation time
-	// start $time = round(microtime(), 3);
-$time2 = round(microtime(), 3);
-$generation = str_replace('-', '', $time2 - $time);
-echo "Page Generation: $generation seconds.<br/>";?>
-Copyright 2008 &copy; Marcus Wong except where otherwise noted.
-</div>
-</td></tr>
-</table>
-</body>
-</html>
-<?php 
-}	// end function
-?>
+<h4>Ways to make links</h4><hr/>
+
+There is an easy shorthand for links, typed as <pre>[[type-of-link:object-to-link-to|link-text]]</pre>
+
+If the part after the pipe symbol (link-text, after the "|") is ommitted, then the link title is given by the text to the right of the colon (object-to-link-to, ":"). Full examples inculde...<hr/>
+
+To carriage set FSH21
+<pre>[[carset:21|FSH21]]</pre><hr/>
+
+To FSH carriage sets
+<pre>[[carsettype:FSH|FSH carriage sets]]</pre><hr/>
+
+To H type carriage sets in general
+<pre>[[carsetfamily:H|H type carriage sets]]</pre><hr/>
+
+To carriage ACN3
+<pre>[[car:3|ACN3]]</pre><hr/>
+
+To ACN carriages
+<pre>[[cartype:ACN|ACN carriages]]</pre><hr/>
+
+To N type carriages in general
+<pre>[[carfamily:N|N type carriages]]</pre><hr/>
+
+To a station
+<pre>[[station:geelong|Geeelong station]]</pre><hr/>
+
+To a region
+<pre>[[region:south western|South Western]]</pre><hr/>
+
+To a locomotive
+<pre>[[loco:N451|N451]]</pre><hr/>
+
+To a locomotive class
+<pre>[[lococlass:n|N class]]</pre><hr/>
+
+To a railcar
+<pre>[[railcar:VL02|VL02]]</pre><hr/>
+
+To a railcar type
+<pre>[[railcartype:VLocity|VLocity railcar]]</pre>
+<? include_once("common/footer.php"); ?>
