@@ -1,10 +1,21 @@
+<div class="arrowlistmenu">
 <?php
+// we are looking at the normal navmanu form
 if (!isset($navclass))
 {
 	$navclass = 'menuheader xpand';
 }
+// otherwise add custom stuff for sitemap
+else
+{
 ?>
-<div class="arrowlistmenu">
+<p class="menuheader">Home</p>
+<ul class="menuitem">
+<li><a href="/">Welcome</a></li>
+</ul>
+<?php
+}
+?>
 <p class="<?php echo $navclass; ?>">News</p>
 <ul class="menuitem">
 <li><a href="/news">News Index</a></li>

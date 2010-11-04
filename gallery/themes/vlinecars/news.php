@@ -28,9 +28,6 @@ include_once('midbit.php');
 // single news article
 if(is_NewsArticle()) { 
 ?>
-<div id="sidebar">
-	<?php include("sidebar.php"); ?>
-</div>
 <div class="topbar"><h2><?php printNewsTitle(); ?></h2></div>
 <div id="news">
 	<div class="newsarticle"> 
@@ -115,9 +112,6 @@ if (getOption('comment_form_articles')) { ?>
 } else {
 // news article loop
 ?>
-<div id="sidebar">
-	<?php include("sidebar.php"); ?>
-</div>
 <div class="topbar"><h2>News</h2></div>
 <div id="news">
 <?php

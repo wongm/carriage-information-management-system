@@ -48,7 +48,7 @@ foreach ($latestalbums as $latestalbum) {
 	
 	$folderpath = "/gallery/" . $latestalbum['folder'];
 	$foldername = "";
-	$splitfoldernames = str_replace('-', ' ', split('/', $folderpath));
+	$splitfoldernames = str_replace('-', ' ', split('/', $latestalbum['folder']));
 	
 	foreach ($splitfoldernames as $foldernameitem)
 	{
