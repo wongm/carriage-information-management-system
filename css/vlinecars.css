@@ -393,13 +393,18 @@ h4 {
 	margin: 0 20px;
 }
 
+#sitemap .arrowlistmenu ul li {
+	margin: 5px 0;	
+}
+
 #sitemap .arrowlistmenu ul li a {
 	background: inherit;
 	color: black;
 	font-size:100%;
 	font-weight:normal;
 	border: none;
-	padding: 2px 0;
+	padding: 0;
+	display: inline;
 }
 
 #sitemap .arrowlistmenu ul li a:hover {
