@@ -40,6 +40,9 @@ else
 				case 'railcars':
 					$selectedTabId = RAILCARS_MENU_TAB;
 					break;
+				case 'regions':
+					$selectedTabId = REGIONS_MENU_TAB;
+					break;
 				default:
 					$selectedTabId = MISC_MENU_TAB;
 					break;
@@ -49,11 +52,12 @@ else
 			break;
 		case 'operations':
 			$selectedTabId = OPERATIONS_MENU_TAB;
+			$pageTitle = str_replace(" - News", "", $pageTitle);	
 			
 			// if the parent page
-			if ($pagelink == 'operations')
+			if ($pagelink != 'operations' && strpos($pageTitle, '404 Page Not Found') === false)
 			{
-				$pageTitle = str_replace(" - News", "", $pageTitle);	
+				$pageTitle = " - Operations$pageTitle";
 			}
 			break;
 		default:

@@ -34,6 +34,7 @@ define ('CARSETS_MENU_TAB', '2');
 define ('LOCOMOTIVES_MENU_TAB', '3');
 define ('RAILCARS_MENU_TAB', '4');
 define ('OPERATIONS_MENU_TAB', '5');
+define ('REGIONS_MENU_TAB', '6');
 define ('GALLERY_MENU_TAB', '7');
 define ('MISC_MENU_TAB', '8');
 
@@ -58,9 +59,9 @@ function getMenuIndex($pageTitle)
 			return OPERATIONS_MENU_TAB;
 		case 'Regions':
 		case 'Stations':
-			return 6;
+			return REGIONS_MENU_TAB;
 		case 'Contact Me':
-		case 'Sitemap':
+		case 'Site Map':
 		case 'Links':
 		case 'Glossary':
 		case 'About the Site':
@@ -73,7 +74,7 @@ function getMenuIndex($pageTitle)
 function printGoogleSearchBox()
 {
 ?>
-<form method="get" action="/search.php">
+<form method="get" action="/misc/search">
 	<input name="q" size="50" id="query-input" autocomplete="off" />
 	<button type="submit">Search</button>
 </form>

@@ -1,69 +1,70 @@
-# NOTE: Change the RewriteBase below to the absolute path to your zenphoto directory.
+# htaccess file version 1.2.8.0;
+# When Zenphoto requires changes to the rewrite rules:
+#		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
+#		Update the above and the define in setup.php
+
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
-
-  # Catch XHTML MP browsers first and get them the 'best' content
-  # There is an implicit AND of these two conditions
-
-  RewriteCond %{HTTP_ACCEPT} application/xhtml\+xml 
-  RewriteCond %{HTTP_ACCEPT} text/vnd\.wap\.wml
-
-  RewriteRule index.php$ mindex.php [L]
-
-  # If the browser can not handle xhtml but *can* handle wml do this
-
-  RewriteCond %{HTTP_ACCEPT} text/vnd\.wap\.wml
-
-  RewriteRule index.php$ index.wml [L]
-
-  # Otherwise regular (and other browsers) go here
-  # No need for an explicit rewrite rule
-  # RewriteRule index.html$ index.html [L]
   
-  RewriteRule ^misc/contact/?$       						gallery/index.php?p=contact&type=misc [L,QSA]
+  RewriteBase /
+  
+  RewriteRule ^admin/?$       										gallery/zp-core [L,QSA]
+  
+  # CMS related stuff, redirect to Zenphoto
+  RewriteRule ^misc/sitemap/?$       								sitemap.php [L,QSA]
+  RewriteRule ^misc/search/?$       								search.php [L,QSA]
+  RewriteRule ^misc/contact/?$       								gallery/index.php?p=contact&type=misc [L,QSA]
   RewriteRule ^misc/([-a-zA-Z0-9]*)/?$       						gallery/index.php?p=pages&type=misc&title=$1 [L,QSA]
-  RewriteRule ^operations/([-a-zA-Z0-9]*)/?$       				gallery/index.php?p=pages&type=operations&title=$1 [L,QSA]
-  RewriteRule ^operations/?$       						gallery/index.php?p=pages&type=operations&title=operations [L,QSA]
-  
-  RewriteRule ^news/?$       						gallery/index.php?p=news [L,QSA]
-  RewriteRule ^news/([-a-zA-Z0-9]*)/?$       		gallery/index.php?p=news&title=$1 [L,QSA]
-  RewriteRule ^news/category/([-a-zA-Z0-9]*)/?$       		gallery/index.php?p=news&category=$1 [L,QSA]
+  RewriteRule ^operations/([-a-zA-Z0-9]*)/?$       					gallery/index.php?p=pages&type=operations&title=operations/$1 [L,QSA]
+  RewriteRule ^operations/([-a-zA-Z0-9]*)/([-a-zA-Z0-9]*)/?$       	gallery/index.php?p=pages&type=operations&title=operations/$1/$2 [L,QSA]
+  RewriteRule ^operations/?$       									gallery/index.php?p=pages&type=operations&title=operations [L,QSA]
+    
+  # News related stuff, redirect to Zenphoto as CMS
+  RewriteRule ^news/?$       										gallery/index.php?p=news [L,QSA]
+  RewriteRule ^news/([-a-zA-Z0-9]*)/?$       						gallery/index.php?p=news&title=$1 [L,QSA]
+  RewriteRule ^news/category/([-a-zA-Z0-9]*)/?$       				gallery/index.php?p=news&category=$1 [L,QSA]
   RewriteRule ^news/category/([-a-zA-Z0-9]*)/([0-9]*)/?$       		gallery/index.php?p=news&category=$1&page=$2 [L,QSA]
   
-  RewriteRule ^region/station/(.*)/?$       							locations-tool.php?name=$1 [L,QSA]
-  RewriteRule ^region/(.*)/?$       							lineguide-tool.php?line=$1 [L,QSA]
-  RewriteRule ^regions?$       							lineguide-tool.php [L,QSA]
+  # CIMS custom stuff
+  RewriteRule ^region/station/(.*)/?$       			locations-tool.php?name=$1 [L,QSA]
+  RewriteRule ^region/(.*)/?$       					lineguide-tool.php?line=$1 [L,QSA]
+  # make parent pages use Zenphoto as CMS
+  RewriteRule ^regions/?$       						gallery/index.php?p=pages&type=misc&title=regions [L,QSA]
+  RewriteRule ^region/?$       							gallery/index.php?p=pages&type=misc&title=regions [L,QSA]
   
   RewriteRule ^carriages/by-number?$                   	carriages-tool.php?section=number [L,QSA]
   RewriteRule ^carriages/by-type/?$                   	carriages-tool.php?section=type [L,QSA]
-  RewriteRule ^carriage/number/(.*)/?$                   carriages-tool.php?car=$1 [L,QSA]
+  RewriteRule ^carriage/number/(.*)/?$                  carriages-tool.php?car=$1 [L,QSA]
   RewriteRule ^carriage/type/(.*)/?$                   	carriages-tool.php?type=$1 [L,QSA]
-  RewriteRule ^carriages/([a-z])-type/?$                	carriages-tool.php?section=$1 [L,QSA]
+  RewriteRule ^carriages/([a-z])-type/?$                carriages-tool.php?section=$1 [L,QSA]
   RewriteRule ^carriages/parcel-vans/?$                	carriages-tool.php?section=parcel-vans [L,QSA]
   RewriteRule ^carriages/power-vans/?$                	carriages-tool.php?section=power-vans [L,QSA]
   RewriteRule ^carriages/loose-cars/?$                	carriages-tool.php?section=loose-cars [L,QSA]
-  RewriteRule ^carriages/?$       					carriages-tool.php [L,QSA]
-  RewriteRule ^carriage/?$       					carriages-tool.php [L,QSA]
+  # make parent pages use Zenphoto as CMS
+  RewriteRule ^carriages/?$       						gallery/index.php?p=pages&type=misc&title=carriages [L,QSA]
+  RewriteRule ^carriage/?$       						gallery/index.php?p=pages&type=misc&title=carriages [L,QSA]
   
   RewriteRule ^carsets/by-number/?$                   	carsets-tool.php?section=number [L,QSA]
-  RewriteRule ^carsets/by-type/?$                   		carsets-tool.php?section=type [L,QSA]
+  RewriteRule ^carsets/by-type/?$                   	carsets-tool.php?section=type [L,QSA]
   RewriteRule ^carset/number/(.*)/?$                   	carsets-tool.php?set=$1 [L,QSA]
   RewriteRule ^carset/type/(.*)/?$                   	carsets-tool.php?type=$1 [L,QSA]
-  RewriteRule ^carsets/([a-z])-type/?$                	carsets-tool.php?section=$1 [L,QSA]
-  RewriteRule ^carsets/?$                   		carsets-tool.php?type=$1 [L,QSA]
-  RewriteRule ^carset/?$                   			carsets-tool.php?type=$1 [L,QSA]
+  RewriteRule ^carsets/([a-z])-type/?$                	carsets-tool.php?section=$1 [L,QSA] 
+  # make parent pages use Zenphoto as CMS
+  RewriteRule ^carsets/?$       						gallery/index.php?p=pages&type=misc&title=carsets [L,QSA]
+  RewriteRule ^carset/?$       							gallery/index.php?p=pages&type=misc&title=carsets [L,QSA]
   
   RewriteRule ^railcars/by-number/?$                   	railcars-tool.php?section=number [L,QSA]
   RewriteRule ^railcars/by-type/?$                   	railcars-tool.php?section=type [L,QSA]
   RewriteRule ^railcar/number/(.*)/?$                   railcars-tool.php?car=$1 [L,QSA]
-  RewriteRule ^railcars/(.*)/?$                   	railcars-tool.php?type=$1 [L,QSA]
-  RewriteRule ^railcars/?$       					railcars-tool.php [L,QSA]
-  RewriteRule ^railcar/?$       					railcars-tool.php [L,QSA]
+  RewriteRule ^railcars/(.*)/?$                   		railcars-tool.php?type=$1 [L,QSA]
+  # make parent pages use Zenphoto as CMS
+  RewriteRule ^railcars/?$       						gallery/index.php?p=pages&type=misc&title=railcars [L,QSA]
+  RewriteRule ^railcar/?$       						gallery/index.php?p=pages&type=misc&title=railcars [L,QSA]
   
-  RewriteRule ^locomotive/number/(.*)/?$                   locomotives-tool.php?number=$1 [L,QSA]
-  RewriteRule ^locomotives/(.*)-class/?$                   	locomotives-tool.php?class=$1 [L,QSA]
-  RewriteRule ^locomotives/?$       					locomotives-tool.php [L,QSA]
-  RewriteRule ^locomotive/?$       					locomotives-tool.php [L,QSA]
-  
+  RewriteRule ^locomotive/number/(.*)/?$                locomotives-tool.php?number=$1 [L,QSA]
+  RewriteRule ^locomotives/(.*)-class/?$				locomotives-tool.php?class=$1 [L,QSA]
+  # make parent pages use Zenphoto as CMS
+  RewriteRule ^locomotives/?$       					gallery/index.php?p=pages&type=misc&title=locomotives [L,QSA]
+  RewriteRule ^locomotive/?$       						gallery/index.php?p=pages&type=misc&title=locomotives [L,QSA]
 </IfModule>

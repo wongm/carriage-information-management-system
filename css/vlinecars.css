@@ -57,7 +57,6 @@ body  {
 } 
 
 #subheader { 
-	background-image: url(../images/categorybar.png);
 	background-color: #990099;
 	color: #FFFFFF;
 	font-size: 14px;
@@ -93,7 +92,6 @@ body  {
 
 #RightColumnNewsHeader {
 	height: 25px;
-	background-image:url(../images/categorybar.png);
 	background-color:#990099;
 	font-weight: bold;
 	font-size: 18px;
@@ -111,7 +109,6 @@ body  {
 
 #RightColumnFleetHeader {
 	height: 25px;
-	background-image: url(../images/categorybar.png);
 	background-color:#990099;
 	font-weight: bold;
 	font-size: 18px;
@@ -131,6 +128,7 @@ body  {
 	background-color: #FFFFFF; 
 	vertical-align: top;
 	padding-left: 5px;
+	padding-bottom: 20px;
 	margin-top: 1px;
 	margin-left: 167px;
 	min-height: 500px;
@@ -146,7 +144,6 @@ body  {
 
 #footer { 
 	padding: 0 10px;
-	background-image: url(../images/categorybar.png);
 	background-color: #990099;
 	color: #FFFFFF;
 	height: 20px;
@@ -155,7 +152,6 @@ body  {
 
 #footer p { 
 	padding: 0 10px 0 20px; /* this padding matches the left alignment of the elements in the divs that appear above it. */
-	background-image: url(../images/categorybar.png);
 	color: #FFFFFF;
 	height: 20px;
 } 
@@ -373,3 +369,39 @@ h4 {
 	padding:0; text-align: center;
 }
 #admin h3:hover { color: #036; }
+
+/* Sitemap
+------------------------------ */
+#sitemap .arrowlistmenu {
+	width: 100%;
+}
+
+#sitemap .arrowlistmenu .menuheader {
+	background: inherit;
+	color: black;
+	text-transform: none;
+	padding:0;
+	cursor:default;
+}
+
+#sitemap .menuitem {
+	display: block !important;
+}
+
+#sitemap .arrowlistmenu ul {
+	list-style-type: disc;
+	margin: 0 20px;
+}
+
+#sitemap .arrowlistmenu ul li a {
+	background: inherit;
+	color: black;
+	font-size:100%;
+	font-weight:normal;
+	border: none;
+	padding: 2px 0;
+}
+
+#sitemap .arrowlistmenu ul li a:hover {
+	text-decoration: underline;
+}
