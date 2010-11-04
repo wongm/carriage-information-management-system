@@ -1,4 +1,4 @@
-<?php 
+<?php
 $pageTitle = array(array("Welcome", ''));
 $pageHeading = "Welcome";
 include_once("common/dbConnection.php");
@@ -8,9 +8,9 @@ include_once("common/header.php");
 ?>
 <table>
 <tr><td valign="top">
-<? 
+<?
 
-echo getConfigVariable('index_page');
+//echo getConfigVariable('index_page');
 /*
 <h1>Welcome to the Carriage Information Management System</h1>
 

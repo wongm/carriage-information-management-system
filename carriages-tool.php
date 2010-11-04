@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 /**
  * carriages.php
- * 
- * Takes requests from the use passed as query strings, 
+ *
+ * Takes requests from the use passed as query strings,
  * and fobs it off to sub-methods.
- * 
+ *
  * Marcus Wong
  * May 2008
  *
@@ -15,10 +15,10 @@ $display = $_REQUEST['section'];
 $car = $_REQUEST['car'];
 $type = $_REQUEST['type'];
 
-include_once("common/vlinecars-formatting-functions.php"); 
-include_once("common/formatting-functions.php"); 
-include_once("common/carriage-functions.php"); 
-include_once("common/gallery-functions.php"); 
+include_once("common/vlinecars-formatting-functions.php");
+include_once("common/formatting-functions.php");
+include_once("common/carriage-functions.php");
+include_once("common/gallery-functions.php");
 
 	// individual carriage page
 	if ($car != '')
@@ -50,7 +50,7 @@ include_once("common/gallery-functions.php");
 		drawTitle('Carriages By Number');
 		echo '<h4>In service</h4>';
 		drawObjectsOfType(getAllCarriages('service', 'all'), '', CARRIAGE_NUMBER_PAGE);
-		
+
 		echo '<h4>Out of service</h4>';
 		drawObjectsOfType(getAllCarriages('outofservice', 'all'), 'out', CARRIAGE_NUMBER_PAGE);
 	}
@@ -71,16 +71,6 @@ include_once("common/gallery-functions.php");
 		include_once("common/header.php");
 		drawCarriageFamily($display);
 	}
-	// fallback
-	else
-	{
-		$pageTitle = array(array("Carriages", ''));
-		include_once("common/header.php");
-		drawTitle('Carriages');
-		getDescription(getConfigVariable('carriage_description'));
-	}
-		
-	
+
 	include_once("common/footer.php");
 ?>
-	

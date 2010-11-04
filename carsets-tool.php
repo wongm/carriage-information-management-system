@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 /**
  * carset.php
- * 
- * Takes requests from the use passed as query strings, 
+ *
+ * Takes requests from the use passed as query strings,
  * and fobs it off to sub-methods.
- * 
+ *
  * Marcus Wong
  * May 2008
  *
@@ -15,9 +15,9 @@ $display = $_REQUEST['section'];
 $set = strtoupper($_REQUEST['set']);
 $type = strtoupper($_REQUEST['type']);
 
-include_once("common/formatting-functions.php"); 
-include_once("common/carset-functions.php"); 
-include_once("common/gallery-functions.php"); 
+include_once("common/formatting-functions.php");
+include_once("common/carset-functions.php");
+include_once("common/gallery-functions.php");
 
 // individual carriage set page
 if ($set != '')
@@ -36,11 +36,11 @@ elseif ($display == 'number')
 	$pageTitle = array(array("Carriage Sets", '/carsets'), array("By Number", ''));
 	$editLink = 'carset/listCarset.php';
 	include_once("common/header.php");
-	
+
 	drawTitle('Carriage Sets By Number');
 	echo '<h4>Current</h4>';
 	drawObjectsOfType(getAllCarsets('service'), '', CARSET_NUMBER_PAGE);
-	
+
 	echo '<h4>Former</h4>';
 	drawObjectsOfType(getAllCarsets('outofservice'), '', CARSET_NUMBER_PAGE);
 }
@@ -50,7 +50,7 @@ elseif ($display == 'type')
 	$pageTitle = array(array("Carriage Sets", '/carsets'), array("By Type", ''));
 	$editLink = 'carset-type/listCarsetType.php';
 	include_once("common/header.php");
-	
+
 	drawTitle('Carriage Sets By Type');
 	drawObjectsOfType(getAllObjectsOfTable('carset_type', '', 'family, cars'), '', CARSET_TYPE_PAGE);
 }
@@ -63,14 +63,5 @@ elseif ($display != '')
 	include_once("common/header.php");
 	drawCarsetFamily($display);
 }
-// fallback
-else
-{
-	$pageTitle = array(array("Carriage Sets", ''));
-	include_once("common/header.php");
-	drawTitle('Carriage Sets');
-	getDescription(getConfigVariable('carriage_set_description'));
-}
-	
 
 include_once("common/footer.php"); ?>
