@@ -32,6 +32,13 @@ label {
 	vertical-align: top;
 	width: 15em;
 }
+
+#search_input {
+	width: 20em;
+}
+#searchfields_icon {
+	display: none;
+}
 /* Page Navigation
 ------------------------------ */
 .nextables { 

@@ -94,20 +94,6 @@ ddaccordion.init({
 <link rel="stylesheet" href="<?= $_zp_themeroot ?>/gallery.css" type="text/css" />
 <?php zenJavascript(); ?>
 <?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
-<!--[if IE 5]>
-<style type="text/css">
-/* place css box model fixes for IE 5* in this conditional comment */
-.ThreeColumnFixedHeader #LeftColumn1 { width: 200px; }
-.ThreeColumnFixedHeader #RightColumn { width: 200px; }
-</style>
-<![endif]--><!--[if IE]>
-<style type="text/css">
-/* place css fixes for all versions of IE in this conditional comment */
-.ThreeColumnFixedHeader #RightColumn, .ThreeColumnFixedHeader #LeftColumn { padding-top: 30px; }
-.ThreeColumnFixedHeader #mainContent { zoom: 1; }
-/* the above proprietary zoom property gives IE the hasLayout it needs to avoid several bugs */
-</style>
-<![endif]-->
 </head>
 <body class="ThreeColumnFixedHeader">
 <?php printAdminToolbox(); ?>

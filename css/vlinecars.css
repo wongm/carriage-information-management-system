@@ -81,47 +81,7 @@ body  {
 	float: left; /* since this element is floated, a width must be given */
 	width: 165px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
 	background: #8C8C96; /* the background color will be displayed for the length of the content in the column, but no further */
-}
-
-#RightColumn {
-	float: right; /* since this element is floated, a width must be given */
-	width: 200px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
-	background: #8C8C96; /* the background color will be displayed for the length of the content in the column, but no further */ /* padding keeps the content of the div away from the edges */
-	height: 800px;
-}
-
-#RightColumnNewsHeader {
-	height: 25px;
-	background-color:#990099;
-	font-weight: bold;
-	font-size: 18px;
-	color:#FFFFFF;
-	vertical-align: middle;
-	text-indent: 5px;
-}
-
-#RightColumnNewsText {
-	height: 150px;
-	font-size: 14px;
-	color:#FFFFFF;
-	text-indent: 5px;
-}
-
-#RightColumnFleetHeader {
-	height: 25px;
-	background-color:#990099;
-	font-weight: bold;
-	font-size: 18px;
-	color:#FFFFFF;
-	vertical-align: middle;
-	text-indent: 5px;
-}
-
-#RightColumnFleetText {
-	height: 150px;
-	font-size: 14px;
-	color:#FFFFFF;
-	text-indent: 5px;
+	vertical-align:top;
 }
 
 #mainContent {
@@ -175,15 +135,6 @@ body  {
 	float: left;
 }
 
-.RightHandColumnHeadings {
-color: #FFFFFF;
-font-weight: bold;
-font-size: 16px;
-}
-
-p.c2 {text-align: center}
-h1.c1 {text-align: center}
-
 img {
 	border: none;
 }
@@ -194,8 +145,9 @@ img {
 	float: right;
 	width: auto;
 	font-weight: bold;
+	position:relative;
+	top:30%;
 }
-
 #query-input {
 	width: 15em;
 }
@@ -221,8 +173,11 @@ h4 {
 
 /* Sidebar menu
 ------------------------------ */
-.arrowlistmenu{
+.arrowlistmenu {
 	width: 165px; /*width of accordion menu*/
+}
+#LeftColumn .arrowlistmenu {
+	*margin-top: -28px; /* IE7 and below */
 }
 .arrowlistmenu .menuheader { /*CSS class for menu headers in general (expanding or not!)*/
 	font: bold 14px Arial;
@@ -377,7 +332,7 @@ h4 {
 }
 
 #sitemap .arrowlistmenu .menuheader {
-	background: inherit;
+	background: white;
 	color: black;
 	text-transform: none;
 	padding:0;
@@ -398,7 +353,7 @@ h4 {
 }
 
 #sitemap .arrowlistmenu ul li a {
-	background: inherit;
+	background: white;
 	color: black;
 	font-size:100%;
 	font-weight:normal;
