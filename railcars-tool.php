@@ -24,6 +24,7 @@ include_once("common/gallery-functions.php");
 	{
 		$result = getRailcar($car);
 		$pageTitle = array(array("Railcars", '/railcars'), array($result['type'], "/railcars/".strtolower($result['type'])), array($result['id'], ''));
+		$editLink = "railcar/editRailcar.php?id=$car";
 		include_once("common/header.php");
 		drawRailcar($result);
 	}
@@ -32,6 +33,7 @@ include_once("common/gallery-functions.php");
 	{
 		$result = getRailcarType($type);
 		$pageTitle = array(array("Railcars", '/railcars'), array($result['id'], ''));
+		$editLink = "/railcar-type/editRailcarType.php?id=$type";
 		include_once("common/header.php");
 		drawRailcarType($result);
 		

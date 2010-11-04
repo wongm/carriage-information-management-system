@@ -29,6 +29,7 @@ include_once("common/gallery-functions.php");
 	elseif ($class != '')
 	{
 		$pageTitle = array(array("Locomotives", '/locomotives'), array($class." class", ''));
+		$editLink = "locomotive-class/editLocomotiveClass.php?id=$class";
 		include_once("common/header.php");
 		drawLocomotiveClass($class);
 	}

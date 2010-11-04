@@ -35,6 +35,7 @@ function drawlocomotive($number)
 		extract($result);
 		$classURL = LOCOMOTIVE_CLASS_PAGE.strtolower($class).'-class';
 		$pageTitle = array(array("Locomotives", '/locomotives'), array(strtoupper($class).' Class', $classURL), array($number, ''));
+		$editLink = "locomotive/editLocomotive.php?id=$number";
 		include_once("common/header.php");
 		
 		drawTitle("Locomotive $number");
