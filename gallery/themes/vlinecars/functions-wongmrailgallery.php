@@ -17,9 +17,9 @@ define ('THUMBNAIL_IMAGE_SIZE', $_zp_options['thumb_size']);
 define ('TIME_FORMAT', $_zp_options['date_format']);
 
 DEFINE ('ARCHIVE_URL_PATH', "/gallery/archive");
-DEFINE ('SEARCH_URL_PATH', "/gallery/search");
+DEFINE ('SEARCH_URL_PATH', "/gallery/page/search");
 DEFINE ('EVERY_ALBUM_PATH', "/gallery/everything");
-DEFINE ('CONTACT_URL_PATH', "/contact.php");
+DEFINE ('CONTACT_URL_PATH', "/misc/contact");
 DEFINE ('RANDOM_ALBUM_PATH', "/gallery/random");
 
 DEFINE ('UPDATES_URL_PATH', "/gallery/recent");

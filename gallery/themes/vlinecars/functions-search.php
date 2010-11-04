@@ -64,10 +64,7 @@ function drawImageGallery($galleryResult, $type='')
 
 	if ($numberOfRows>0) 
 	{
-		if ($text != "")
-		{
-			echo "<p>$text</p>\n";
-		}
+		echo "<p>$text</p>\n";
 		echo '<table class="centeredTable">';
 
 		$i=0;
@@ -88,47 +85,41 @@ function drawImageGallery($galleryResult, $type='')
 			
 			while ($j < 3 AND $i<$numberOfRows)
 			{
-				$photoTitle = stripslashes(MYSQL_RESULT($galleryResult,$i,"zen_images.title"));
-				$photoUrl = MYSQL_RESULT($galleryResult,$i,"zen_images.filename");
-				$photoDesc = stripslashes(MYSQL_RESULT($galleryResult,$i,"zen_images.desc"));
-				
-				if (strpos($photoDesc, 'href=') > 0)
-				{
-					$photoDesc = "";
-				}
-				
-				$photoId = MYSQL_RESULT($galleryResult,$i,"zen_images.id");
-				$photoPath = MYSQL_RESULT($galleryResult,$i,"zen_albums.folder");
-				$photoAlbumTitle = stripslashes(MYSQL_RESULT($galleryResult,$i,"zen_albums.title"));
-				$photoDate = stripslashes(MYSQL_RESULT($galleryResult,$i,"zen_images.date"));
+				$photoTitle = stripslashes(MYSQL_RESULT($galleryResult,$i,"zp_images.title"));
+				$photoUrl = MYSQL_RESULT($galleryResult,$i,"zp_images.filename");
+				$photoDesc = stripslashes(MYSQL_RESULT($galleryResult,$i,"zp_images.desc"));
+				$photoId = MYSQL_RESULT($galleryResult,$i,"zp_images.id");
+				$photoPath = MYSQL_RESULT($galleryResult,$i,"zp_albums.folder");
+				$photoAlbumTitle = stripslashes(MYSQL_RESULT($galleryResult,$i,"zp_albums.title"));
+				$photoDate = stripslashes(MYSQL_RESULT($galleryResult,$i,"zp_images.date"));
 				$photoDate = strftime(TIME_FORMAT,strtotime($photoDate));
 				
 				if ($type == 'ratings')
 				{
-					$wins = MYSQL_RESULT($galleryResult,$i,"zen_images.ratings_win");
-					$views = MYSQL_RESULT($galleryResult,$i,"zen_images.ratings_view");
-					$score = MYSQL_RESULT($galleryResult,$i,"zen_images.ratings_score");
+					$wins = MYSQL_RESULT($galleryResult,$i,"zp_images.ratings_win");
+					$views = MYSQL_RESULT($galleryResult,$i,"zp_images.ratings_view");
+					$score = MYSQL_RESULT($galleryResult,$i,"zp_images.ratings_score");
 					$photoStatsText = formatRatingCounter(array($wins, $views, $score));
 				}
 				// any other type of popular / recent pages
 				else
 				{
-					$hitsAll = MYSQL_RESULT($galleryResult,$i,"zen_images.hitcounter");
-					$hitsMonth = MYSQL_RESULT($galleryResult,$i,"zen_images.hitcounter_month");
-					$hitsWeek = MYSQL_RESULT($galleryResult,$i,"zen_images.hitcounter_week");
+					$hitsAll = MYSQL_RESULT($galleryResult,$i,"zp_images.hitcounter");
+					$hitsMonth = MYSQL_RESULT($galleryResult,$i,"zp_images.hitcounter_month");
+					$hitsWeek = MYSQL_RESULT($galleryResult,$i,"zp_images.hitcounter_week");
 					$photoHitcounter = array($hitsAll, $hitsMonth, $hitsWeek, $type);
 					
 					if ( zp_loggedin() )
 					{
-						$id = MYSQL_RESULT($galleryResult,$i,"zen_images.id");
-						$hitCounterWeekLastReset = MYSQL_RESULT($galleryResult,$i,"zen_images.hitcounter_week_reset");
-						$hitCounterMonthLastReset = MYSQL_RESULT($galleryResult,$i,"zen_images.hitcounter_month_reset");
+						$id = MYSQL_RESULT($galleryResult,$i,"zp_images.id");
+						$hitCounterWeekLastReset = MYSQL_RESULT($galleryResult,$i,"zp_images.hitcounter_week_reset");
+						$hitCounterMonthLastReset = MYSQL_RESULT($galleryResult,$i,"zp_images.hitcounter_month_reset");
 						$updatedHitCounter = updateHitCounter($hitsAll, $hitsMonth, $hitsWeek, $hitCounterMonthLastReset, $hitCounterWeekLastReset);
 												 
 						// only reset the monthly and weekly totals if and admin, and counter are past the date
 						if ($updatedHitCounter['admin'] != '') 
 						{
-							query("UPDATE zen_images SET ".$updatedHitCounter['admin']." WHERE `id` = $id");
+							query("UPDATE zp_images SET ".$updatedHitCounter['admin']." WHERE `id` = $id");
 							$photoHitcounter = array($updatedHitCounter['hitCounterAllTime'], $updatedHitCounter['hitCounterMonth'], $updatedHitCounter['hitCounterWeek'], $type);
 						}
 					}
@@ -235,7 +226,7 @@ function imageOrAlbumSearch($term, $type, $page)
 	// do the query
 	if ($type == 'Image')
 	{
-		$searchSql = "SELECT * FROM zen_images, zen_albums WHERE zen_images.albumid = zen_albums.id AND (zen_images.title like '%$term%' OR zen_images.desc like '%$term%' OR zen_images.filename like '%$term%' ) ORDER BY zen_images.sort_order";
+		$searchSql = "SELECT * FROM zp_images, zp_albums WHERE zp_images.albumid = zp_albums.id AND (zp_images.title like '%$term%' OR zp_images.desc like '%$term%' OR zp_images.filename like '%$term%' ) ORDER BY zp_images.sort_order";
  		$limitedSearchSql = "$searchSql LIMIT $index,$maxImagesPerPage";
 		$numberImagesFound = MYSQL_NUM_ROWS(MYSQL_QUERY($searchSql));
 		$text2 = ' <a href="'.GALLERY_PATH.'/search/?search='.$term.'&type=albums">Search for \''.$term.'\' in albums instead?</a>';
@@ -244,7 +235,7 @@ function imageOrAlbumSearch($term, $type, $page)
 	}
 	elseif ($type == 'Album')
 	{
-		$searchSql = "SELECT * FROM zen_albums WHERE ( zen_albums.title LIKE '%$term%' OR zen_albums.desc LIKE '%$term%' OR zen_albums.folder LIKE '%$term%' )";
+		$searchSql = "SELECT * FROM zp_albums WHERE ( zp_albums.title LIKE '%$term%' OR zp_albums.desc LIKE '%$term%' OR zp_albums.folder LIKE '%$term%' )";
 		$text2 = ' <a href="'.GALLERY_PATH.'/search/?search='.$term.'&type=image">Search for \''.$term.'\' in images instead?</a>';
 		$galleryResult = MYSQL_QUERY($searchSql);
 		$numberOfRows = MYSQL_NUM_ROWS($galleryResult);
@@ -340,17 +331,17 @@ function drawAlbums($galleryResult, $error = false, $search = false)
 			echo "<tr>\n";
 			while ($j < 3 AND $i<$numberOfRows)
 			{
-			$photoPath = MYSQL_RESULT($galleryResult,$i,"zen_albums.folder");
-				$photoAlbumTitle = stripslashes(MYSQL_RESULT($galleryResult,$i,"zen_albums.title"));
-				$albumId = MYSQL_RESULT($galleryResult,$i,"zen_albums.id");
+				$photoPath = MYSQL_RESULT($galleryResult,$i,"zp_albums.folder");
+				
+				$photoAlbumTitle = stripslashes(MYSQL_RESULT($galleryResult,$i,"zp_albums.title"));
+				$albumId = MYSQL_RESULT($galleryResult,$i,"zp_albums.id");
+				$albumDate = strftime(TIME_FORMAT, strtotime(MYSQL_RESULT($galleryResult,$i,"fdate")));
 				
 				//old shit
 				if ($search)
-				{
-					$albumDate = strftime(TIME_FORMAT, strtotime(MYSQL_RESULT($galleryResult,$i,"fdate")));
-					
+				{					
 					// get an image to display with it
-					$imageSql = "SELECT filename, id FROM zen_images WHERE zen_images.albumid = '$albumId' LIMIT 0,1 ";
+					$imageSql = "SELECT filename, id FROM zp_images WHERE zp_images.albumid = '$albumId' LIMIT 0,1 ";
 					$imageResult = MYSQL_QUERY($imageSql);
 					$numberOfImages = MYSQL_NUM_ROWS($imageResult);
 					if ($numberOfImages > 0)
@@ -364,13 +355,12 @@ function drawAlbums($galleryResult, $error = false, $search = false)
 						$photoUrl = GALLERY_PATH."/foldericon.gif";
 					}
 				}
-				// new frontpage stuff
+				// new railgeelong frontpage stuff
 				else
 				{
 					$photoUrl = MYSQL_RESULT($galleryResult,$i,"i.filename");
 					$photoId = MYSQL_RESULT($galleryResult,$i,"i.id");
 					$photoUrl = GALLERY_PATH."/$photoPath/image/thumb/$photoUrl";
-					$albumDate = strftime(TIME_FORMAT, MYSQL_RESULT($galleryResult,$i,"date"));
 				}
 
 				if ($photoDesc == '')
@@ -423,23 +413,23 @@ function getGalleryUploadsResults($pageType, $pageTypeModifier, $nextURL, $start
 		
 		$nextURL .= "/?double=&count=$count&start=$start&page=";
 	
-		$sql = "SELECT * FROM zen_images
-			INNER JOIN zen_albums ON zen_images.albumid = zen_albums.id 
-			WHERE zen_images.filename IN (
+		$sql = "SELECT * FROM zp_images
+			INNER JOIN zp_albums ON zp_images.albumid = zp_albums.id 
+			WHERE zp_images.filename IN (
 				SELECT filename 
 				FROM (
 					SELECT filename, count(id) AS duplicates 
-					FROM zen_images
+					FROM zp_images
 					GROUP BY filename) AS inner_query 
 				WHERE duplicates > 1)
-			ORDER BY zen_images.date DESC
+			ORDER BY zp_images.date DESC
 			LIMIT $start, $count";
 	}
 	else
 	{
-		$captionLimitSql = "zen_images.title REGEXP '_[0-9]{4}' OR zen_images.title REGEXP 'DSCF[0-9]{4}'";
+		$captionLimitSql = "zp_images.title REGEXP '_[0-9]{4}' OR zp_images.title REGEXP 'DSCF[0-9]{4}'";
 		$captiona = $captionb = '';
-		$order = " ORDER BY zen_images.date DESC ";
+		$order = " ORDER BY zp_images.date DESC ";
 		
 		//show all images with bad captions
 		if ($pageTypeModifier == 'images')
@@ -460,47 +450,37 @@ function getGalleryUploadsResults($pageType, $pageTypeModifier, $nextURL, $start
 		{
 			if ($pageTypeModifier == 'this-month')
 			{
-				$order = " ORDER BY zen_images.hitcounter_month DESC";
-				$where = " AND zen_images.hitcounter_month > 0 ";
+				$order = " ORDER BY zp_images.hitcounter_month DESC";
+				$where = " AND zp_images.hitcounter_month > 0 ";
 			}
 			else if ($pageTypeModifier == 'this-week')
 			{
-				$order = " ORDER BY zen_images.hitcounter_week DESC";
-				$where = " AND zen_images.hitcounter_week > 0 ";
+				$order = " ORDER BY zp_images.hitcounter_week DESC";
+				$where = " AND zp_images.hitcounter_week > 0 ";
 			}
 			else if ($pageTypeModifier == 'all-time')
 			{
-				$order = " ORDER BY zen_images.hitcounter DESC";
+				$order = " ORDER BY zp_images.hitcounter DESC";
 			}
 			else if ($pageTypeModifier == 'ratings')
 			{
-				$order = " ORDER BY zen_images.ratings_score DESC, zen_images.hitcounter DESC";
-				$where = " AND zen_images.ratings_view > 0 ";
-			}
-			else if ($pageTypeModifier == 'wagons')
-			{
-				$order = " ORDER BY zen_images.mtime DESC";
-				$where = " AND zen_albums.folder like 'wagons%'";
-			}
-			// standard recent uploads page
-			else
-			{
-				$where = " AND zen_albums.folder not like 'wagons%'";
+				$order = " ORDER BY zp_images.ratings_score DESC, zp_images.hitcounter DESC";
+				$where = " AND zp_images.ratings_view > 0 ";
 			}
 			
 			$nextURL .= "/";
 		}
 		
-		$sql = "SELECT * FROM zen_images, zen_albums 
-			WHERE zen_images.albumid = zen_albums.id $captiona $captionb $where
+		$sql = "SELECT * FROM zp_images, zp_albums 
+			WHERE zp_images.albumid = zp_albums.id $captiona $captionb $where
 			$order
 			LIMIT $currentImageResultIndex,$count";
 	}
 	
 	if (!$dontDoTotalCount) {
 	$toreturn['maxImagesCount'] = MYSQL_RESULT(MYSQL_QUERY("SELECT count(*) 
-		FROM zen_images, zen_albums 
-		WHERE zen_images.albumid = zen_albums.id $captiona $captionb $where"), 0, 'count(*)');
+		FROM zp_images, zp_albums 
+		WHERE zp_images.albumid = zp_albums.id $captiona $captionb $where"), 0, 'count(*)');
 	}
 	
 	$toreturn['galleryResult'] = MYSQL_QUERY($sql);

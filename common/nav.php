@@ -81,6 +81,8 @@ else
 <p class="<?php echo $navclass; ?>">Media</p>
 <ul class="menuitem">
 <li><a href="/gallery">Photo Gallery</a></li>
+<li><a href="/gallery/recent">Recent Uploads</a></li>
+<li><a href="/gallery/page/search">Photo Search</a></li>
 <li><a href="">Video</a></li>
 </ul>
 <p class="<?php echo $navclass; ?>">Other</p>

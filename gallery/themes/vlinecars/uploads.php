@@ -10,7 +10,8 @@
  */ 
 $startTime = array_sum(explode(" ",microtime())); if (!defined('WEBPATH')) die(); 
 
-require_once("wongmrailgallery-functions.php");
+require_once("vlinecars-functions.php");
+require_once("functions-search.php");
 
 // set up variables
 $recentPageNumber = $_REQUEST['page'];
@@ -44,15 +45,18 @@ if ($pageType == 'popular')
 	
 	if ($pageTypeModifier == 'ratings')
 	{
-		$trailingIntroText = '. You can rate photos <a href="' . DO_RATINGS_URL_PATH . '">here</a>.';
+		$trailingIntroText = '. '.RATINGS_TEXT;
 	}
 }
 // get date based ranked pages
 else if ($pageType == '')
 {
 	$nextURL = UPDATES_URL_PATH;
-	$leadingIntroText = $pageTitle = 'Recent uploads';
-	$pageBreadCrumb = "<a href=\"$nextURL\" title=\"Recent uploads\">Recent uploads</a>";
+	$leadingIntroText = $pageTitle = 'Recent Uploads';
+	$rssType = 'Gallery';
+	$rssTitle = 'Recent Uploads';
+	
+	$pageBreadCrumb = "<a href=\"$nextURL\" title=\"Recent Uploads\">Recent Uploads</a>";
 	
 	if ( zp_loggedin() ) {
 		$adminOnlyText = '<p><a href="'.$nextURL.'/?caption=images">Uncaptioned images</a><br>
@@ -61,15 +65,17 @@ else if ($pageType == '')
 	}
 }
 
-$pageTitle = " - $pageTitle";
+$pageTitle = " - Gallery - $pageTitle";
 include_once('header.php'); 
-require_once("search-functions.php");
 ?>
-<table class="headbar">
-	<tr><td><a href="<?=getGalleryIndexURL();?>" title="Gallery Index"><?=getGalleryTitle();?></a> &raquo;
-	<?=$pageBreadCrumb?>
-	</td><td id="righthead"><?printSearchBreadcrumb();?></td></tr>
-</table>
+<a href="<?=getGalleryIndexURL();?>" title="Gallery Index"><?=getGalleryTitle();?></a> &raquo;
+<?php
+echo $pageBreadCrumb;
+include_once('midbit.php'); 
+?>
+<div class="topbar">
+	<h2><?=$leadingIntroText?></h2>
+</div>
 <?
 if (!is_numeric($recentPageNumber) OR $recentPageNumber < 1)
 {
@@ -96,10 +102,9 @@ else
 {
 	echo "<p>$leadingIntroText, photos ".getNumberCurrentDispayedRecords(MAXIMAGES_PERPAGE, $galleryResults['galleryResultCount'], $recentPageNumber-1)."$trailingIntroText</p>";
 	echo $adminOnlyText;
-	galleryPageNavigationLinks($currentImageResultIndex, $galleryResults['galleryResultCount'], MAXIMAGES_PERPAGE, $galleryResults['nextURL']);
+	
 	drawImageGallery($galleryResults['galleryResult'], $galleryType);
-	galleryPageNavigationLinks($currentImageResultIndex, $galleryResults['galleryResultCount'], MAXIMAGES_PERPAGE, $galleryResults['nextURL']);
-	drawPageNumberLinks($currentImageResultIndex, $galleryResults['maxImagesCount'], MAXIMAGES_PERPAGE, $galleryResults['nextURL']);
+	galleryPageNavigationLinks($currentImageResultIndex, $galleryResults['maxImagesCount'], $galleryResults['galleryResultCount'], $galleryResults['nextURL']);
 }
 include_once('footer.php'); 
 ?>
