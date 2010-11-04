@@ -61,7 +61,10 @@ else
 			}
 			break;
 		default:
-			$selectedTabId = GALLERY_MENU_TAB;
+			if (!isset($selectedTabId))
+			{
+				$selectedTabId = GALLERY_MENU_TAB;
+			}
 			break;
 	}
 }

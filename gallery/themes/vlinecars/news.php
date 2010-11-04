@@ -125,7 +125,6 @@ if (getOption('comment_form_articles')) { ?>
 	<div class="newsarticle"> 
     	<h4><a href="/news/<?php echo getNewsTitleLink(); ?>"><?php echo getNewsTitle(); ?></a></h4>
         <div class="newsarticlecredit">
-        <span class="newsarticlecredit-left">
         <p><small><?php printNewsDate();?></small></p>
 <?php
 if(is_GalleryNewsType()) {

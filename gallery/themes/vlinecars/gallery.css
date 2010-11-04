@@ -27,9 +27,6 @@
 label {
 	padding: 0 0 0 2em;
 }
-.centeredTable {
-	margin-top: 5px;
-}
 #righthead {
 	text-align: right;
 	vertical-align: top;
@@ -124,10 +121,6 @@ h4.main_formhead {
 }
 /* Gallery specific stuff
 ------------------------------ */
-.centeredTable td {
-	padding: 5px 10px;
-	text-align: center;
-}
 .i {
 	background-color: #FAFAFA;
 	padding: 10px !important;

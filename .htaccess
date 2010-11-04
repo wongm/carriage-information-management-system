@@ -11,6 +11,9 @@
   
   RewriteRule ^admin/?$       										gallery/zp-core [L,QSA]
   
+  
+  RewriteRule ^index.php?$       									gallery/index.php?p=home [L,QSA]
+  
   # CMS related stuff, redirect to Zenphoto
   RewriteRule ^misc/sitemap/?$       								sitemap.php [L,QSA]
   RewriteRule ^misc/search/?$       								search.php [L,QSA]

@@ -405,3 +405,9 @@ h4 {
 #sitemap .arrowlistmenu ul li a:hover {
 	text-decoration: underline;
 }
+
+/* Sitemap
+------------------------------ */
+#home .centeredTable {
+	width: 100%;
+}
