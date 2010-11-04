@@ -14,6 +14,7 @@ if($locationName != "")
 		$pageTitle = array(array("Regions", '/regions'), 
 			array($location['lineName'], "/region/".$location['lineLink']), 
 			array($location['pageTitle'], ''));
+		$editLink = "regions/editLocations.php?location=" . $location['id'];
 		include_once("common/header.php");
 		drawLocation($location);
 	}

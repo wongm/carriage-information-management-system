@@ -19,6 +19,7 @@ if ($lineToDisplay != '')
 	else
 	{
 		$pageTitle = array(array("Regions", '/regions'), array($lineName, ''));
+		$editLink = array(array("regions/editLine.php?line=$lineToDisplay", "Edit Line"), array("regions/listStations.php?line=$lineToDisplay", "List Stations"));
 		include_once("common/header.php");
 		drawTitle($lineName);
 		getDescription($line['description']);

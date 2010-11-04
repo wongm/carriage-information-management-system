@@ -342,7 +342,12 @@ initializetabcontent("maintab")
 
 
 function printBasicAdminToolbox($editLink)
-{
+{	
+	if (!is_array($editLink) AND strlen($editLink) > 0)
+	{
+		$editLink = array(array($editLink, 'Edit Page'), array());
+	}
+	
 	// check if possible admin
 	if (isset($_COOKIE['zenphoto_auth']) && !empty($_COOKIE['zenphoto_auth'])) 
 	{
@@ -352,13 +357,17 @@ function printBasicAdminToolbox($editLink)
 <h3><a href="javascript:toggle('admin_data');">Admin Toolbox</a></h3>
 </div><div id="admin_data" style="display: none;">
 <ul>
-<li><a href="/gallery/zp-core/admin.php">Admin</a></li>
+<li><a href="/gallery/zp-core/admin.php">Gallery Admin</a></li>
+<li><a href="/backend">Carriages</a></li>
 <?php
-if (strlen($editLink) > 0)
+if (sizeof($editLink) > 1)
 {
+	foreach ($editLink as $link)
+	{
 ?>
-<li><a href="/backend/<?php echo $editLink; ?>">Edit</a></li>
+<li><a href="/backend/<?php echo $link[0]; ?>" target="_blank"><?php echo $link[1]; ?></a></li>
 <?php
+	}
 }
 ?>
 <li><a href="/gallery/zp-core/admin.php?logout=0&amp;p=pages&amp;title=locomotives">Logout</a></li>

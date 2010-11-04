@@ -2,9 +2,6 @@
 	<li class="menu"><a href="/backend">Admin Home</a></li>
 </ul>
 <ul class="sitemenu">
-	<li class="menu"><a href="/backend/config/listConfig.php">Config Variables</a></li>
-</ul>
-<ul class="sitemenu">
 	<li class="menu"><a href="/backend/carriage/listCarriage.php">Carriages</a></li>
 	<li class="menu"><a href="/backend/carset/listCarset.php">Carset</a></li>
 	<li class="menu"><a href="/backend/carriage-type/listCarriageType.php">Carriage types</a></li>
