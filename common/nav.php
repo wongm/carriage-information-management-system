@@ -1,8 +1,8 @@
 <div class="arrowlistmenu">
 <p class="menuheader xpand">News</p>
 <ul class="menuitem">
-<li><a href="/news">News</a></li>
-<li><a href="/news/category/media">News in the Media</a></li>
+<li><a href="/news">News Index</a></li>
+<li><a href="/news/category/media">In the Media</a></li>
 </ul>
 <p class="menuheader xpand">Carriages &amp; Vans</p>
 <ul class="menuitem">
@@ -68,11 +68,11 @@
 </ul>
 <p class="menuheader xpand">Other</p>
 <ul class="menuitem">
-<li><a href="/misc/about/">About the Site</a></li>
-<li><a href="/forums/" target="_blank">Forums</a></li>
-<li><a href="/misc/contact/">Contact</a></li>
-<li><a href="/misc/glossary/">Glossary</a></li>
-<li><a href="/misc/links/">Links</a></li>
+<li><a href="/misc/about">About the Site</a></li>
+<li><a href="/forums" target="_blank">Forums</a></li>
+<li><a href="/misc/contact">Contact</a></li>
+<li><a href="/misc/glossary">Glossary</a></li>
+<li><a href="/misc/links">Links</a></li>
 <li><a href="/sitemap.php">Site Map</a></li>
 </ul>
 </div>

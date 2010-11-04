@@ -134,7 +134,7 @@ if(is_GalleryNewsType()) {
 ?>
 		</div>
     	<?php printNewsContent(); ?>
-    	<p><?php printNewsReadMoreLink(); ?></p>
+    	<p><a href="/news/<?php echo getNewsTitleLink(); ?>"><?php echo getNewsReadMore(); ?></a></p>
     	<?php printCodeblock(1); ?>
  	</div>	
 <?php

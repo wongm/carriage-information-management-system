@@ -1,0 +1,171 @@
+/* Marcus Wong */
+
+/* News
+------------------------------ */
+#sidebar {
+	position: absolute;
+	right: 1em;
+	top: 120px;
+	width: 200px;
+	background-color: #E6E6DF;
+	margin-right: 4px;
+	padding: 0 0 0 10px;
+}
+#news {
+	margin-right: 220px;
+}
+.newsarticlecredit ul, .newsarticlecredit li {
+	display: inline;
+	padding: 0px;
+	margin: 0px;
+}
+.newsarticlecredit {
+	font-size: smaller;
+}
+
+/* gallery stuff */
+label {
+	padding: 0 0 0 2em;
+}
+.centeredTable {
+	margin-top: 5px;
+}
+#righthead {
+	text-align: right;
+	vertical-align: top;
+	width: 15em;
+}
+/* Page Navigation
+------------------------------ */
+.nextables { 
+  margin-top: 10px;
+  border: 1px 0 solid white;
+  background: #FAFAFA;
+  width: 100%;
+}
+.nextables td {
+	
+  padding: 5px 10px;
+}
+ul.pagelist {
+	font-size: 1em;
+	clear: both;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+ul.pagelist li {
+	display: inline;
+}
+ul.pagelist li a,ul.pagelist span.disabledlink, .pagelist a {
+	padding: 2px;
+}
+ul.pagelist li.current a {
+	text-decoration: none;
+	cursor: default;
+}
+ul.pagelist li.prev {
+	margin-right: 10px;
+}
+ul.pagelist li.next {
+	margin-left: 10px;
+}
+.disabledlink {
+	color: #ddd;
+	cursor: default;
+}
+.pagenav {
+	clear: both;
+}
+.disabled_nav {
+	visibility: hidden;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.nextables #pagelinked td {
+	width: 33%;
+}
+#pagelinked .pagelist {
+	text-align: center;
+}
+.nextables A.next { 
+	float: right;
+	text-align: left; 
+	height: 100%;
+}
+.nextables A.prev { 
+	float: left; 
+	text-align: right; 
+	height: 100%;
+}
+.nextables A:hover, .nextables A:active { 
+	text-decoration: none; 
+}
+#thumbnav td {
+	width: 25%;
+}
+h4.main_formhead {
+	display: none;
+}
+/* Front page stuff 
+------------------------------ */
+.indexalbums {
+	width: 100%;
+	padding: 5px;
+}
+.indexalbums .albumthumb {
+	width: 280px;
+	text-align: center;
+	padding: 10px;
+}
+.indexalbums .albumdesc {
+	text-align: left;
+	vertical-align: top;
+}
+/* Gallery specific stuff
+------------------------------ */
+.centeredTable td {
+	padding: 5px 10px;
+	text-align: center;
+}
+.i {
+	background-color: #FAFAFA;
+	padding: 10px !important;
+	vertical-align: top;
+}
+.i h4 {
+	padding: 5px 0;
+	margin: 0;
+}
+.i h4:hover {
+	text-decoration: underline;
+}
+.album, .image {
+	background-color: #F5F6F5;
+	padding: 10px !important;
+}
+.album h4, .image h4 {
+	padding: 5px 0;
+	margin: 0;
+}
+.albumdesc {
+	padding-left: 10px;
+}
+.pages {
+	margin: 10px 0;
+}
+.imageDisplay {
+	background-color: white;
+	padding: 10px !important;
+}
+.exif {
+	background-color:#F5F6F5;
+	font-size:0.9em !important;
+	position:relative;
+	text-align:center;
+	width:30em !important;
+	margin: 0 auto;
+}
+#edit-editable_image_truncate, #edit-editable_album_2, .jeip-editfield {
+	width:600px;
+}

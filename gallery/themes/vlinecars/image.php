@@ -9,20 +9,22 @@ include_once('header.php');
 <?php 
 include_once('midbit.php'); 
 ?>
-<div class="topbar">
-  	<h3><?=getImageTitle();?></h3>
-  	<?php printImageDesc(true); ?>   
-<table class="centeredTable">
-	<tr><td class="imageDisplay">
-        <a href="<?=getFullImageURL();?>" title="<?=getImageTitle();?>">
+  <div class="topbar">
+  	<h2>Image: <?=getImageTitle();?></h2>
+  	<?php printImageDesc(true); ?>
+  </div>
+      
+  <table class="centeredTable">
+	  <tr><td class="imageDisplay">
+        <a href="<?=getFullImageURL();?>" rel="lightbox" title="<?=getImageTitle();?>">
         <?php printDefaultSizedImage(getImageTitle()); ?></a><br/>
-		<a href="<?=getFullImageURL();?>"><? getSelectedSizedThingy(); ?></a><br/>
-    </td></tr>
-</table>
+        <a href="<?=getFullImageURL();?>" rel="lightbox" title="<?=getImageTitle();?>">View full size photo (<?=getFullWidth()?>px by <?=getFullHeight()?>px)</a><br/>
+      </td></tr>
+  </table>
 
-<?php printEXIFData() ; ?>
-
-<table class="nextables"><tr id="thumbnav"><td>
+  <?php printEXIFData() ; ?>
+<?php if (hasPrevImage() or hasNextImage()) { ?>    
+  <table class="nextables"><tr id="thumbnav"><td>
     <?php if (hasPrevImage()) { ?>
     <a class="prev" href="<?=getPrevImageURL();?>" title="Previous Image"><span>&laquo;</span> Previous</a>
     </td><td>
@@ -34,9 +36,12 @@ include_once('midbit.php');
     </td><td>
     <a class="next" href="<?=getNextImageURL();?>" title="Next Image">Next <span>&raquo;</span></a>
     <?php } else { echo "</td><td>"; } ?>
-</td></tr></table>
-  
-<?php 	
-  	printForumLink();
-  	include_once('footer.php'); 
+  </td></tr></table>
+<?php } ?>
+<?
+if(function_exists("printImageMarkupFields"))
+{	
+	printImageMarkupFields();
+}
+include_once('footer.php'); 
 ?>

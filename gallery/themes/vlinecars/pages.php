@@ -8,8 +8,7 @@ if (substr($pageTitle, $len-2, 1) == '-')
 	$pageTitle = substr($pageTitle, 0, $len-3);
 }
 include_once('header.php'); ?>
-<a href="<?=getGalleryIndexURL();?>" title="Gallery Index"><?=getGalleryTitle();?></a>
-<?php printPageTitle(" &raquo; "); ?>
+<?php printCimsParentPagesBreadcrumb("", " &raquo; "); printPageTitle(); ?>
 <?php printCurrentNewsCategory(" &raquo; Category - "); ?>
 <?php printNewsTitle(" &raquo; "); ?>
 <?php 
@@ -22,6 +21,8 @@ include_once('midbit.php');
 	</div>
 <?php 
 printCodeblock(1); 
+
+printCimsSubPagesExcerpts();
 
 if (getOption('zenpage_comments_allowed')) { ?>
 				<div id="comments">

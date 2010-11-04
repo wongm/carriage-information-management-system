@@ -56,12 +56,6 @@ body  {
 	color: #FFFFFF;
 } 
 
-#HeaderSearch {
-	float: right;
-	width: auto;
-	font-weight: bold;
-}
-
 #subheader { 
 	background-image: url(../images/categorybar.png);
 	background-color: #990099;
@@ -196,6 +190,18 @@ h1.c1 {text-align: center}
 
 img {
 	border: none;
+}
+
+/* Search
+------------------------------ */
+#HeaderSearch {
+	float: right;
+	width: auto;
+	font-weight: bold;
+}
+
+#query-input {
+	width: 15em;
 }
 
 /* Fonts

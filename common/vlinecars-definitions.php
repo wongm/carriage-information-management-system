@@ -29,6 +29,10 @@ define ('SITE_NAME', 'V/LineCars.com');
 // what positon are these links in the side menu bar?
 // this is so they drop down automatically for the relevant sections
 define ('NEWS_MENU_TAB', '0');
+define ('CARRIAGES_MENU_TAB', '1');
+define ('CARSETS_MENU_TAB', '2');
+define ('LOCOMOTIVES_MENU_TAB', '3');
+define ('RAILCARS_MENU_TAB', '4');
 define ('OPERATIONS_MENU_TAB', '5');
 define ('GALLERY_MENU_TAB', '7');
 define ('MISC_MENU_TAB', '8');
@@ -43,13 +47,13 @@ function getMenuIndex($pageTitle)
 	switch ($pageTitle[0][0])
 	{
 		case 'Carriages':
-			return 1;
+			return CARRIAGES_MENU_TAB;
 		case 'Carriage Sets':
-			return 2;
+			return CARSETS_MENU_TAB;
 		case 'Locomotives':
-			return 3;
+			return LOCOMOTIVES_MENU_TAB;
 		case 'Railcars':
-			return 4;	
+			return RAILCARS_MENU_TAB;	
 		case 'Operations':
 			return OPERATIONS_MENU_TAB;
 		case 'Regions':
@@ -64,6 +68,16 @@ function getMenuIndex($pageTitle)
 	}
 		
 	return '';
+}
+
+function printGoogleSearchBox()
+{
+?>
+<form method="get" action="/search.php">
+	<input name="q" size="50" id="query-input" autocomplete="off" />
+	<button type="submit">Search</button>
+</form>
+<?php
 }
 
 ?>

@@ -10,7 +10,6 @@
 //******************************************************************************
 
 // max images per page
-include_once('gallery-formatting-functions.php');
 
 define ('IMAGETITLE_TRUNCATE_LENGTH', 40);
 define ('FORUM_IMAGE_SIZE', 500);
