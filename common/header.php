@@ -15,6 +15,7 @@ $time = round(microtime(), 3);
 <title><?=getCIMSPageTitle($pageTitle)?></title>
 <script type="text/javascript" src="/js/jquery-1.2.2.pack.js"></script>
 <script type="text/javascript" src="/js/ddaccordion.js"></script>
+<script type="text/javascript" src="/js/zenphoto.js"></script>
 <script type="text/javascript">//<![CDATA[ 
 ddaccordion.init({
         headerclass: "xpand", //Shared CSS class name of headers group that are xpand
@@ -44,6 +45,7 @@ ddaccordion.init({
 <![endif]-->
 </head>
 <body class="ThreeColumnFixedHeader">
+<?php printBasicAdminToolbox($editLink) ?>
 <table id="container"><a name="top" id="top"></a>
 <tr><td id="header" colspan="2">
 <div id="HeaderLogo">
@@ -52,7 +54,7 @@ ddaccordion.init({
 <form action="" method="post">Search <input name="searchterm" type="text" /> <input name="StartSearch" type="button" value="Go" /></form>
 </div></td></tr>
 <tr><td colspan="2" id="subheader">
-<?=getPageBreadcrumbs($pageTitle); ?>
+<?php echo getPageBreadcrumbs($pageTitle); ?>
 </td></tr>
 <tr><td id="LeftColumn">
 <?php include_once('nav.php');

@@ -34,6 +34,7 @@ function drawCarsetType($type)
 		extract($result);
 		$familyUrl = "/carsets/".strtolower($family)."-type";
 		$pageTitle = array(array("Carriage Sets", '/carsets'), array("$family Type", $familyUrl), array("$type Sets", ''));
+		$editLink = "carset-type/editCarsetType.php?id=$type";
 		include_once("common/header.php");	
 		drawTitle("$type type carriage sets");
 		
@@ -154,6 +155,7 @@ function drawCarset($set, $result)
 		extract($result);
 		$familyLink = "/carset/type/".strtoupper($type);
 		$pageTitle = array(array("Carriage Sets", '/carsets'), array("$type Type", $familyLink), array($result[type].$set, ''));
+		$editLink = "carset/editCarset.php?id=$set";
 		include_once("common/header.php");
 		
 		drawTitle("Carriage Set $type$set");

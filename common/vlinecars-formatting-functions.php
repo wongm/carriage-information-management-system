@@ -339,4 +339,32 @@ initializetabcontent("maintab")
 <? 	/* end tabs div */	
 	
 } // end function
+
+
+function printBasicAdminToolbox($editLink)
+{
+	// check if possible admin
+	if (isset($_COOKIE['zenphoto_auth']) && !empty($_COOKIE['zenphoto_auth'])) 
+	{
+		$possibleAdmin = true;
+?>
+<div id="admin">
+<h3><a href="javascript:toggle('admin_data');">Admin Toolbox</a></h3>
+</div><div id="admin_data" style="display: none;">
+<ul>
+<li><a href="/gallery/zp-core/admin.php">Admin</a></li>
+<?php
+if (strlen($editLink) > 0)
+{
+?>
+<li><a href="/backend/<?php echo $editLink; ?>">Edit</a></li>
+<?php
+}
+?>
+<li><a href="/gallery/zp-core/admin.php?logout=0&amp;p=pages&amp;title=locomotives">Logout</a></li>
+</ul>
+</div>
+<?
+	}
+}
 ?>
