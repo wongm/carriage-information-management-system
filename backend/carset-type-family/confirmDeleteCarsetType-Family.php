@@ -38,7 +38,7 @@ else if ($numberOfRows>0) {
 </table>
 
 <h3>If you are sure you want to delete the above record, please press the delete button below.</h3><br><br>
-<form name="carset_type_familyEnterForm" method="POST" action="deletecarsetType-Family.php">
+<form name="carset_type_familyEnterForm" method="post" action="deletecarsetType-Family.php">
 <input type="hidden" name="thisFamilyField" value="<? echo $thisFamily; ?>">
 <input type="hidden" name="thisCarset_typeField" value="<? echo $thisCarset_type; ?>">
 <input type="submit" name="submitConfirmDeletecarset_type_familyForm" value="Delete from carset type <> family">

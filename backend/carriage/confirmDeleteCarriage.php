@@ -39,7 +39,7 @@ else if ($numberOfRows>0) {
 </table>
 
 <h3>If you are sure you want to delete the above record, please press the delete button below.</h3><br><br>
-<form name="carriageEnterForm" method="POST" action="deleteCarriage.php">
+<form name="carriageEnterForm" method="post" action="deleteCarriage.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="submit" name="submitConfirmDeleteCarriageForm" value="Delete  from Carriage">
 <input type="button" name="cancel" value="Go Back" onClick="javascript:history.back();">

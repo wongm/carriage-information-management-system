@@ -3,7 +3,7 @@ include_once("../common/dbConnection.php");
 include_once("../common/header.php");
 ?>
 <h2>Enter Carriage</h2>
-<form name="carriageEnterForm" method="POST" action="insertNewCarriage.php">
+<form name="carriageEnterForm" method="post" action="insertNewCarriage.php">
 
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

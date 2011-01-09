@@ -54,7 +54,7 @@ else if ($numberOfRows>0) {
 </table>
 
 <h3>If you are sure you want to delete the above record, please press the delete button below.</h3><br><br>
-<form name="railcar_type_eventEnterForm" method="POST" action="deleteRailcar_type_event.php">
+<form name="railcar_type_eventEnterForm" method="post" action="deleteRailcar_type_event.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="submit" name="submitConfirmDeleteRailcar_type_eventForm" value="Delete  from Railcar_type_event">
 <input type="button" name="cancel" value="Go Back" onClick="javascript:history.back();">

@@ -52,7 +52,7 @@ else if ($numberOfRows>0) {
 </table>
 
 <h3>If you are sure you want to delete the above record, please press the delete button below.</h3><br><br>
-<form name="carriage_eventEnterForm" method="POST" action="deleteObjectEvent.php">
+<form name="carriage_eventEnterForm" method="post" action="deleteObjectEvent.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="hidden" name="object" value="<? echo $object; ?>">
 <input type="submit" name="submitConfirmDeleteCarriage_eventForm" value="Delete  from Carriage_event">

@@ -35,7 +35,7 @@ else if ($numberOfRows>0) {
 	else
 	{
 		echo "<a href=\"listLocomotive.php\">Return without changes!</a>";
-		echo "<hr>";
+		echo "<hr/>";
 	}
 	
 	editObject('locomotive', 'Locomotive', $result); 

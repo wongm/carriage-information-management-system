@@ -49,7 +49,7 @@ else if ($numberOfRows>0) {
 </table>
 
 <h3>If you are sure you want to delete the above record, please press the delete button below.</h3><br><br>
-<form name="carset_typeEnterForm" method="POST" action="deleteCarset_type.php">
+<form name="carset_typeEnterForm" method="post" action="deleteCarset_type.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="submit" name="submitConfirmDeleteCarset_typeForm" value="Delete  from Carset_type">
 <input type="button" name="cancel" value="Go Back" onClick="javascript:history.back();">

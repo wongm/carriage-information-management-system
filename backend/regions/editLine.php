@@ -50,7 +50,7 @@ else if ($numberOfRows>0)
 ?>
 <a href="listLines.php">&laquo; Back to lines</a><hr>
 <fieldset><legend>Line</legend>
-<form name="raillinesUpdateForm" method="POST" action="updateRaillines.php">
+<form name="raillinesUpdateForm" method="post" action="updateRaillines.php">
 <input type="hidden" name="thisLine_idField" value="<? echo $thisLine_id; ?>">
 <table cellspacing="5" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

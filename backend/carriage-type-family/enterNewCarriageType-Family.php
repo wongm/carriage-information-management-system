@@ -3,7 +3,7 @@ $pageTitle = 'Enter new carriage Type to Family mappings';
 include_once("../common/dbConnection.php");
 include_once("../common/header.php");
 ?>
-<form name="carriage_type_familyEnterForm" method="POST" action="insertNewcarriageType-Family.php">
+<form name="carriage_type_familyEnterForm" method="post" action="insertNewcarriageType-Family.php">
 
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

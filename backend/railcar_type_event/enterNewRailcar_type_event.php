@@ -3,7 +3,7 @@ include_once("../common/dbConnection.php");
 include_once("../common/header.php");
 ?>
 <h2>Enter Railcar_type_event</h2>
-<form name="railcar_type_eventEnterForm" method="POST" action="insertNewRailcar_type_event.php">
+<form name="railcar_type_eventEnterForm" method="post" action="insertNewRailcar_type_event.php">
 
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

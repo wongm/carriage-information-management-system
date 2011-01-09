@@ -31,7 +31,7 @@ else if ($numberOfRows>0) {
 ?>
 
 <h2>Update carriage <> carset</h2>
-<form name="carriage_setUpdateForm" method="POST" action="updateCarriageSetMove.php">
+<form name="carriage_setUpdateForm" method="post" action="updateCarriageSetMove.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="hidden" name="referer" value="<?=$_SERVER[HTTP_REFERER]; ?>">
 

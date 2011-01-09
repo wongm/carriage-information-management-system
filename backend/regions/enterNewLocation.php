@@ -6,7 +6,7 @@ $pageTitle = 'Insert New Location';
 include_once("../common/dbConnection.php");
 include_once("../common/header.php");	?>
 
-<form name="locationsEnterForm" method="POST" action="insertNewLocations.php">
+<form name="locationsEnterForm" method="post" action="insertNewLocations.php">
 <fieldset><legend>General</legend>
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

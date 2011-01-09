@@ -29,7 +29,7 @@ else if ($numberOfRows>0) {
 ?>
 
 <h2>Update carriage conversion details</h2>
-<form name="carriage_convertedUpdateForm" method="POST" action="updateCarriageConverted.php">
+<form name="carriage_convertedUpdateForm" method="post" action="updateCarriageConverted.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="hidden" name="referer" value="<?=$_SERVER[HTTP_REFERER]; ?>">
 

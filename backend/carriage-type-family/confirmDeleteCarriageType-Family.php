@@ -38,7 +38,7 @@ else if ($numberOfRows>0) {
 </table>
 
 <h3>If you are sure you want to delete the above record, please press the delete button below.</h3><br><br>
-<form name="carriage_type_familyEnterForm" method="POST" action="deleteCarriageType-Family.php">
+<form name="carriage_type_familyEnterForm" method="post" action="deleteCarriageType-Family.php">
 <input type="hidden" name="thisFamilyField" value="<? echo $thisFamily; ?>">
 <input type="hidden" name="thiscarriage_typeField" value="<? echo $thiscarriage_type; ?>">
 <input type="submit" name="submitConfirmDeletecarriage_type_familyForm" value="Delete from carriage type <> family">

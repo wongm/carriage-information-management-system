@@ -86,7 +86,7 @@ else
 	}
 ?>
 <a href="listStations.php?line=<?=$thisLine?>">&laquo; Back to line</a><hr>
-<form name="locationsUpdateForm" method="POST" action="updateLocations.php">
+<form name="locationsUpdateForm" method="post" action="updateLocations.php">
 <input type="hidden" name="thisLineField" value="<? echo $thisLine; ?>">
 <input type="hidden" name="thisKmField" value="<? echo $thisKm; ?>">
 <fieldset id="general"><legend>General</legend>
@@ -173,7 +173,7 @@ else
 		?>
 			<tr><td>
 				<fieldset>
-				<form name="locations_raillinesEnterForm" method="POST" action="insertNewLocations_raillines.php">
+				<form name="locations_raillinesEnterForm" method="post" action="insertNewLocations_raillines.php">
 				<input type="hidden" name="thisLocation_idField" value="<? echo $thisLocationId; ?>">
 	
 				<table cellspacing="2" cellpadding="2" border="0">

@@ -4,7 +4,7 @@ include_once("../common/header.php");
 ?>
 <h2>Power Search Railcar_type_event</h2>
 The power search will search every field in the  Railcar_type_event table, for a match to your keyword. The power searches entire strings or parts of your string. <br><br>
-<form name="railcar_type_eventPowerSearchForm" method="POST" action="searchRailcar_type_event.php">
+<form name="railcar_type_eventPowerSearchForm" method="post" action="searchRailcar_type_event.php">
 <table cellspacing="2" cellpadding="2" border="0" width="500">
 <tr>
 <td align=right><font color=red><b>Keyword : </font></b>   </td>

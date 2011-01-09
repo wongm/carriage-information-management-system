@@ -44,7 +44,7 @@ else if ($numberOfRows>0) {
 	}
 ?>
 <fieldset id="<?=$object?>"><legend>Carset type</legend>
-<form name="carset_typeUpdateForm" method="POST" action="updateCarsetType.php">
+<form name="carset_typeUpdateForm" method="post" action="updateCarsetType.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 
 <table>

@@ -30,7 +30,7 @@ else if ($numberOfRows>0) {
 ?>
 
 <h2>Update carset recodings</h2>
-<form name="carset_recodedUpdateForm" method="POST" action="updateCarsetRecoded.php">
+<form name="carset_recodedUpdateForm" method="post" action="updateCarsetRecoded.php">
 <input type="hidden" name="thisIdField" size="20" value="<? echo $thisId; ?>">
 <input type="hidden" name="referer" value="<?=$_SERVER[HTTP_REFERER]; ?>">
 <table cellspacing="2" cellpadding="2" border="0" width="100%">

@@ -3,7 +3,7 @@ $pageTitle = 'Enter new carset Type to Family mappings';
 include_once("../common/dbConnection.php");
 include_once("../common/header.php");
 ?>
-<form name="carset_type_familyEnterForm" method="POST" action="insertNewCarsetType-Family.php">
+<form name="carset_type_familyEnterForm" method="post" action="insertNewCarsetType-Family.php">
 
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

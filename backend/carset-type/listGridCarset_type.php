@@ -144,7 +144,7 @@ if ($numberOfRows == $limitPerPage)
 if ($thisAction=="EnterNew")
 {
 ?>
-<FORM NAME="insertForm" METHOD="POST" ACTION="<? echo $_SERVER['PHP_SELF']; ?>">
+<FORM NAME="insertForm" METHOD="post" ACTION="<? echo $_SERVER['PHP_SELF']; ?>">
 <input type="hidden" name="action" value="Insert">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 	<TR BGCOLOR="#FF6666">
@@ -173,7 +173,7 @@ if ($thisIdFromForm == $thisId)
 {
 
 ?>
-<FORM NAME="editForm" METHOD="POST" ACTION="<? echo $_SERVER['PHP_SELF']; ?>">
+<FORM NAME="editForm" METHOD="post" ACTION="<? echo $_SERVER['PHP_SELF']; ?>">
 <input type="hidden" name="action" value="Update">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 	<TR BGCOLOR="<? echo $bgColor; ?>">
@@ -206,7 +206,7 @@ if ($thisIdFromForm == $thisId)
 	} // end while loop
 ?>
 </TABLE>
-<FORM NAME="insertForm" METHOD="POST" ACTION="<? echo $_SERVER['PHP_SELF']; ?>">
+<FORM NAME="insertForm" METHOD="post" ACTION="<? echo $_SERVER['PHP_SELF']; ?>">
 <input type="hidden" name="action" value="EnterNew">
 <input type="Submit" name="submit" value="Insert New Record">
 </FORM>

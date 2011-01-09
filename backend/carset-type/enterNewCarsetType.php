@@ -3,7 +3,7 @@ include_once("../common/dbConnection.php");
 include_once("../common/header.php");
 ?>
 <h2>Enter Carset_type</h2>
-<form name="carset_typeEnterForm" method="POST" action="insertNewCarset_type.php">
+<form name="carset_typeEnterForm" method="post" action="insertNewCarset_type.php">
 
 <table cellspacing="2" cellpadding="2" border="0" width="100%">
 	<tr valign="top" height="20">

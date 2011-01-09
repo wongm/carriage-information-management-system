@@ -14,22 +14,22 @@ function basicEditObjectForm($object, $title, $result)
 	$thisContent = stripslashes(MYSQL_RESULT($result,$i,"content"));
 ?>
 <fieldset id="<?=$object?>data"><legend><?=$title?></legend>
-<form name="<?=$object?>UpdateForm" method="POST" action="update<?=str_replace(' ', '', $title)?>.php">
-<input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
+<form name="<?=$object?>UpdateForm" method="post" action="update<?=str_replace(' ', '', $title)?>.php">
+<input type="hidden" name="thisIdField" value="<? echo $thisId; ?>" />
 
 <table>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Id :  </b> </td>
-		<td> <? echo $thisId; ?>  </td> 
+		<td> <? echo $thisId; ?>  </td>
 	</tr>
 <?	if ($object == 'carriage' OR $object == 'carset')
 	{}
 	else
 	{
-?>			
+?>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Description :  </b> </td>
-		<td> <input type="text" name="thisDescriptionField" size="60" value="<? echo $thisDescription; ?>">  </td> 
+		<td> <input type="text" name="thisDescriptionField" size="60" value="<? echo $thisDescription; ?>" />  </td>
 	</tr>
 <?	}
 
@@ -37,12 +37,12 @@ function basicEditObjectForm($object, $title, $result)
 	{
 		$thisCarsetContent = stripslashes(MYSQL_RESULT($result,$i,"carset_content"));
 		$thisCarriageContent = stripslashes(MYSQL_RESULT($result,$i,"carriage_content"));
-		
+
 ?>
-		
+
 	<tr valign="top" height="20">
 		<td align="right"> <b> Carset content :  </b> </td>
-		<td> <? fancyform('CarsetContent', $thisCarsetContent); ?> </td> 
+		<td> <? fancyform('CarsetContent', $thisCarsetContent); ?> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Carriage content :  </b> </td>
@@ -50,26 +50,26 @@ function basicEditObjectForm($object, $title, $result)
 		<textarea name="thisCarriageContentField" id="thisCarriageContentField" wrap="VIRTUAL" cols="100" rows="30"><? echo $thisCarriageContent; ?></textarea>
 		</td>
 	</tr>
-<?		
+<?
 	}
 	else
 	{
-?>	
+?>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Content :  </b> </td>
-		<td> <? fancyform('Content', $thisContent); ?> </td> 
+		<td> <? fancyform('Content', $thisContent); ?> </td>
 	</tr>
-<?		
+<?
 	}
 	?>
 </table>
-<input type="submit" name="submitUpdate<?=$title?>Form" value="Update <? echo str_replace('_',' ',$object);?>">
+<input type="submit" value="Update <? echo str_replace('_',' ',$object);?>" />
 
 </form>
 </fieldset>
 <?
-}	// end function      
-           
+}	// end function
+
 
 
 
@@ -106,16 +106,16 @@ function editAddObjectEventsForm($object, $title, $thisId)
 		<td><a href="../common/confirmDeleteObjectEvent.php?object=<?=$object?>&id=<?=$thisEventId?>">Delete</a></td>
 	</tr>
 <?	}
-?>	
+?>
 </table>
 Add:
-<form name="<?=$object?>EventEnterForm" method="POST" action="../common/insertNewObjectEvent.php">
-<input type="hidden" name="this<?=$fileName?>Field" value="<? echo $thisId; ?>">
-<input type="hidden" name="object" value="<? echo $object; ?>">
+<form name="<?=$object?>EventEnterForm" method="post" action="../common/insertNewObjectEvent.php">
+<input type="hidden" name="this<?=$fileName?>Field" value="<? echo $thisId; ?>" />
+<input type="hidden" name="object" value="<? echo $object; ?>" />
 <table>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date :  </b> </td>
-		<td> <input type="text" name="thisDateField" size="20" value="">  </td> 
+		<td> <input type="text" name="thisDateField" size="20" value="" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date modifier :  </b> </td>
@@ -123,11 +123,11 @@ Add:
 		<option selected value="book">Book</option>
 		<option value="seen">Seen</option>
 		<option <? if ($thisStatus == 'current'){echo selected;} ?> value="current">Current</option>
-		</select> </td> 
+		</select> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Note :  </b> </td>
-		<td> <input type="text" name="thisNoteField" size="60" value="">  </td> 
+		<td> <input type="text" name="thisNoteField" size="60" value="" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Event type :  </b> </td>
@@ -139,13 +139,13 @@ Add:
 		<option <? if ($thisStatus == 'scrap'){echo selected;} ?> value="scrap">Scrapped</option>
 		<option <? if ($thisStatus == 'sold'){echo selected;} ?> value="sold">Sold</option>
 		<option <? if ($thisStatus == 'sparepool'){echo selected;} ?> value="sparepool">In sparepool</option>
-		</select></td> 
+		</select></td>
 	</tr>
 </table>
 
-<input type="submit" name="submitEnter<?=$title?>_eventForm" value="Enter <? echo str_replace('_',' ',$object);?> event">
+<input type="submit" name="submitEnter<?=$title?>_eventForm" value="Enter <? echo str_replace('_',' ',$object);?> event" />
 </form>
-</fieldset>      
+</fieldset>
 <?
 }	// end function
 
@@ -182,7 +182,7 @@ function editCarriageMovesForm($carriage, $carset)
 	$sql = "SELECT * FROM carriage_carset WHERE $object = '$thisId' ORDER BY date ASC";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisEventId = MYSQL_RESULT($result,$i,"id");
@@ -198,11 +198,11 @@ function editCarriageMovesForm($carriage, $carset)
 		<td><a href="../common/confirmDeleteCarriageSetMove.php?id=<?=$thisEventId?>">Delete</a></td>
 	</tr>
 <?	}
-?>	
+?>
 </table>
-<form name="carriageMoveForm" method="POST" action="../common/insertNewCarriageSet.php">
-<input type="hidden" name="this<?=$title?>Field" value="<? echo $thisId; ?>">
-<input type="hidden" name="thisTypeField" value="moved">
+<form name="carriageMoveForm" method="post" action="../common/insertNewCarriageSet.php">
+<input type="hidden" name="this<?=$title?>Field" value="<? echo $thisId; ?>" />
+<input type="hidden" name="thisTypeField" value="moved" />
 
 Add:
 <table>
@@ -212,22 +212,22 @@ Add:
 <?
 	$result = MYSQL_QUERY("SELECT * FROM $oppose ORDER BY id ASC");
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisObjectId = MYSQL_RESULT($result,$i,"id");
 		echo "<option value=\"$thisObjectId\">$thisObjectId</option>";
 	}
 		?>
-		</select></td> 
+		</select></td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Position :  </b> </td>
-		<td> <input type="text" name="thisPositionField" size="20" value="">  </td> 
+		<td> <input type="text" name="thisPositionField" size="20" value="" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date :  </b> </td>
-		<td> <input type="text" name="thisDateField" size="20" value="">  </td> 
+		<td> <input type="text" name="thisDateField" size="20" value="" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date modifier :  </b> </td>
@@ -236,15 +236,15 @@ Add:
 		<option selected value="book">Book</option>
 		<option <? if ($thisStatus == 'seen'){echo selected;} ?> value="seen">Seen</option>
 		<option <? if ($thisStatus == 'current'){echo selected;} ?> value="current">Current</option>
-		</select> </td> 
+		</select> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Note :  </b> </td>
-		<td> <input type="text" name="thisNoteField" size="60" value="">  </td> 
+		<td> <input type="text" name="thisNoteField" size="60" value="" />  </td>
 	</tr>
 </table>
 
-<input type="submit" name="submitEnterCarriageMoveForm" value="Enter carriage movement">
+<input type="submit" value="Enter carriage movement" />
 </form>
 </fieldset>
 <?
@@ -281,7 +281,7 @@ function editCarriageRecodesForm($carriage, $type)
 	$sql = "SELECT * FROM carriage_converted WHERE $object = '$thisId' ORDER BY date ASC";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisEventId = MYSQL_RESULT($result,$i,"id");
@@ -296,42 +296,42 @@ function editCarriageRecodesForm($carriage, $type)
 		<td><a href="../common/confirmDeleteCarriageConverted.php?id=<?=$thisEventId?>">Delete</a></td>
 	</tr>
 <?	}
-?>	
+?>
 </table>
-<form name="carriageMoveEnterForm" method="POST" action="../common/insertNewCarriageConverted.php">
-<?	
+<form name="carriageMoveEnterForm" method="post" action="../common/insertNewCarriageConverted.php">
+<?
 	if ($carriage != '')
 	{
 ?>
-<input type="hidden" name="thisCarriageField" value="<? echo $thisId; ?>">
+<input type="hidden" name="thisCarriageField" value="<? echo $thisId; ?>" />
 <?	}
 	elseif ($type != '')
 	{
 ?>
-<input type="hidden" name="thisCarriageTypeField" value="<? echo $thisId; ?>">
+<input type="hidden" name="thisCarriageTypeField" value="<? echo $thisId; ?>" />
 <?	}
 ?>
 Add:
 <table>
 	<tr valign="top" height="20">
 		<td align="right"> <b> <?=$moved?> :  </b> </td>
-		<td> <? drawObjectField($oppose, $currentValue=''); ?> </td> 
+		<td> <? drawObjectField($oppose, $currentValue=''); ?> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date :  </b> </td>
-		<td> <input type="text" name="thisDateField" size="20" value="">  </td> 
+		<td> <input type="text" name="thisDateField" size="20" value="" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date modifier :  </b> </td>
-		<td> <? drawWhyField($thisStatus); ?> </td> 
+		<td> <? drawWhyField($thisStatus); ?> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Note :  </b> </td>
-		<td> <input type="text" name="thisNoteField" size="60" value="">  </td> 
+		<td> <input type="text" name="thisNoteField" size="60" value="" />  </td>
 	</tr>
 </table>
 
-<input type="submit" name="submitEnterCarriageConversionForm" value="Enter carriage conversion">
+<input type="submit" value="Enter carriage conversion" />
 </form>
 </fieldset>
 
@@ -361,11 +361,11 @@ function drawObjectField($type, $currentValue='')
 <?
 	$result = MYSQL_QUERY("SELECT * FROM $type ORDER BY id ASC");
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisCarTypeId = MYSQL_RESULT($result,$i,"id");
-		
+
 		if ($currentValue == $thisCarTypeId)
 		{
 			$selected = " selected ";
@@ -374,7 +374,7 @@ function drawObjectField($type, $currentValue='')
 		{
 			$selected = "";
 		}
-		
+
 		echo "<option $selected value=\"$thisCarTypeId\">$thisCarTypeId</option>\n";
 	}
 ?>
@@ -401,17 +401,17 @@ function editObject($object, $title, $result)
 	$thisId = MYSQL_RESULT($result,0,"id");
 	$thisDescription = stripslashes(MYSQL_RESULT($result,0,"description"));
 	$thisContent = stripslashes(MYSQL_RESULT($result,0,"content"));
-	
+
 	if ($object == 'locomotive' OR $object == 'carriage' OR $object == 'carset' OR $object == 'railcar')
 	{
 		$thisLivery = stripslashes(MYSQL_RESULT($result,0,"livery"));
 	}
-	
+
 	if ($object != 'locomotive_class' AND $object != 'railcar_type')
 	{
 		$thisStatus= MYSQL_RESULT($result,0,"status");
 	}
-	
+
 	if ($object != 'locomotive' AND $object != 'locomotive_class' AND $object != 'railcar_type' AND $object != 'railcar')
 	{
 		$thisFamily = MYSQL_RESULT($result,0,"family");
@@ -420,38 +420,38 @@ function editObject($object, $title, $result)
 	{
 		$thisClass = MYSQL_RESULT($result,0,"class");
 	}
-	
+
 	if ($object == 'railcar')
 	{
 		$thisRailcarType = MYSQL_RESULT($result,0,"railcar_type");
 	}
-		
+
 ?>
 
 
 <fieldset id="<?=$object?>"><legend><?=$title?></legend>
-<form name="<?=$object?>UpdateForm" method="POST" action="update<?=str_replace(' ', '', $title)?>.php">
-<input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
+<form name="<?=$object?>UpdateForm" method="post" action="update<?=str_replace(' ', '', $title)?>.php">
+<input type="hidden" name="thisIdField" value="<? echo $thisId; ?>" />
 <table>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Id :  </b> </td>
-		<td> <? echo $thisId; ?></td> 
+		<td> <? echo $thisId; ?></td>
 	</tr>
 <?
 	if ($object != 'locomotive' AND $object != 'locomotive_class' AND $object != 'railcar_type' AND $object != 'railcar')
 	{
-		?>	
+		?>
 	<tr>
 		<td align="right"> <b> Family :  </b> </td>
 		<td><select name="thisFamilyField">
 <?
 		$result = MYSQL_QUERY("SELECT * FROM family ORDER BY id ASC");
 		$numberOfRows = MYSQL_NUM_ROWS($result);
-		
+
 		for ($i = 0; $i < $numberOfRows; $i++)
 		{
 			$thisFamilyId = MYSQL_RESULT($result,$i,"id");
-			
+
 			if ($thisFamilyId == $thisFamily)
 			{
 				echo "<option selected value=\"$thisFamilyId\">$thisFamilyId</option>";
@@ -462,24 +462,24 @@ function editObject($object, $title, $result)
 			}
 		}
 		?>
-		</select></td> 
+		</select></td>
 	</tr>
-<?	
+<?
 	}
 	elseif ($object == 'locomotive')
-	{	
-		?>	
+	{
+		?>
 	<tr>
 		<td align="right"> <b> Class :  </b> </td>
 		<td><select name="thisClassField">
 <?
 		$result = MYSQL_QUERY("SELECT * FROM locomotive_class ORDER BY id ASC");
 		$numberOfRows = MYSQL_NUM_ROWS($result);
-		
+
 		for ($i = 0; $i < $numberOfRows; $i++)
 		{
 			$thisFamilyId = MYSQL_RESULT($result,$i,"id");
-			
+
 			if ($thisFamilyId == $thisClass)
 			{
 				echo "<option selected value=\"$thisFamilyId\">$thisFamilyId</option>";
@@ -490,28 +490,28 @@ function editObject($object, $title, $result)
 			}
 		}
 		?>
-		</select></td> 
-	</tr>	
-	
-	
-<?	
+		</select></td>
+	</tr>
+
+
+<?
 	}	/// end loco if statement
 
 
 	if ($object == 'railcar')
 	{
-		?>	
+		?>
 	<tr>
 		<td align="right"> <b> Railcar type :  </b> </td>
 		<td><select name="thisRailcarTypeField">
 <?
 		$result = MYSQL_QUERY("SELECT * FROM railcar_type ORDER BY id ASC");
 		$numberOfRows = MYSQL_NUM_ROWS($result);
-		
+
 		for ($i = 0; $i < $numberOfRows; $i++)
 		{
 			$thisFamilyId = MYSQL_RESULT($result,$i,"id");
-			
+
 			if ($thisFamilyId == $thisRailcarType)
 			{
 				echo "<option selected value=\"$thisFamilyId\">$thisFamilyId</option>";
@@ -522,31 +522,31 @@ function editObject($object, $title, $result)
 			}
 		}
 		?>
-		</select></td> 
+		</select></td>
 	</tr>
-<?	
+<?
 	}
-	
+
 	if (isset($thisLivery))
 	{
 		drawLiveryRow($thisLivery);
 	}
-	
+
 	if ($object == 'carriage' OR $object == 'carset')
 	{}
 	else
 	{
-?>			
+?>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Description :  </b> </td>
-		<td> <input type="text" name="thisDescriptionField" size="60" value="<? echo $thisDescription; ?>">  </td> 
+		<td> <input type="text" name="thisDescriptionField" size="60" value="<? echo $thisDescription; ?>" />  </td>
 	</tr>
 <?	}
 
 
 	if ($object != 'locomotive_class' AND $object != 'railcar_type')
 	{
-		?>	
+		?>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Status :  </b> </td>
 		<td><select name="thisStatusField">
@@ -556,15 +556,15 @@ function editObject($object, $title, $result)
 		<option <? if ($thisStatus == 'brokenup'){echo selected;} ?> value="brokenup">Broken up</option>
 		<option <? if ($thisStatus == 'scrapped'){echo selected;} ?> value="scrapped">Scrapped</option>
 		<option <? if ($thisStatus == 'sold'){echo selected;} ?> value="sold">Sold</option>
-		</select></td> 
+		</select></td>
 	</tr>
 <?	}		?>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Content :  </b> </td>
-		<td> <? fancyform('Content', $thisContent); ?> </td> 
+		<td> <? fancyform('Content', $thisContent); ?> </td>
 	</tr>
 </table>
-<input type="submit" name="submitUpdate<?=$title?>Form" value="Update <?=$title?>">
+<input type="submit" value="Update <?=$title?>" />
 </form></fieldset>
 
 <?
@@ -574,14 +574,12 @@ function editObject($object, $title, $result)
 function fancyform($type, $thisDescription)
 {
 	?>
-	<form>
 	<script type="text/javascript" src="../common/js_quicktags.js"></script>
 	<script type="text/javascript">edToolbar();</script>
 	<textarea name="this<?=$type?>Field" id="this<?=$type?>Field" wrap="VIRTUAL" cols="100" rows="20"><? echo $thisDescription; ?></textarea>
 	<script type="text/javascript">var edCanvas = document.getElementById('this<?=$type?>Field');</script>
-	</form>
 <?
-}	// end function	
+}	// end function
 
 
 function editCarsetRecodesForm($carset, $type)
@@ -612,7 +610,7 @@ function editCarsetRecodesForm($carset, $type)
 	$sql = "SELECT * FROM carset_recoded WHERE $object = '$thisId' ORDER BY date ASC";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisEventId = MYSQL_RESULT($result,$i,"id");
@@ -627,11 +625,11 @@ function editCarsetRecodesForm($carset, $type)
 		<td><a href="../common/confirmDeleteCarsetRecoded.php?id=<?=$thisEventId?>">Delete</a></td>
 	</tr>
 <?	}
-?>	
+?>
 </table>
 
-<form name="carset_recodedEnterForm" method="POST" action="../common/insertNewCarsetRecoded.php">
-<input type="hidden" name="this<?=$title?>Field" value="<? echo $thisId; ?>">
+<form name="carset_recodedEnterForm" method="post" action="../common/insertNewCarsetRecoded.php">
+<input type="hidden" name="this<?=$title?>Field" value="<? echo $thisId; ?>" />
 Add:
 <table>
 	<tr valign="top" height="20">
@@ -640,18 +638,18 @@ Add:
 <?
 	$result = MYSQL_QUERY("SELECT * FROM $oppose ORDER BY id ASC");
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisObjectId = MYSQL_RESULT($result,$i,"id");
 		echo "<option value=\"$thisObjectId\">$thisObjectId</option>";
 	}
 		?>
-		</select></td> 
+		</select></td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date :  </b> </td>
-		<td> <input type="text" name="thisDateField" size="20" value="">  </td> 
+		<td> <input type="text" name="thisDateField" size="20" value="" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date modifier :  </b> </td>
@@ -660,15 +658,15 @@ Add:
 		<option selected value="book">Book</option>
 		<option <? if ($thisStatus == 'seen'){echo selected;} ?> value="seen">Seen</option>
 		<option <? if ($thisStatus == 'current'){echo selected;} ?> value="current">Current</option>
-		</select> </td> 
+		</select> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Note :  </b> </td>
-		<td> <input type="text" name="thisNoteField" size="60" value="">  </td> 
+		<td> <input type="text" name="thisNoteField" size="60" value="" />  </td>
 	</tr>
 </table>
 
-<input type="submit" name="submitEnterCarset_recodedForm" value="Enter carset recoding">
+<input type="submit" value="Enter carset recoding" />
 
 </form>
 </fieldset>
@@ -684,13 +682,13 @@ function editObjectEventsForm($object, $title, $thisId)
 {
 	echo "<h3>Edit $title</h3><hr/>";
 	$fileName = str_replace(' ','',$title);
-	
+
 	$sql = "SELECT * FROM ".$object."_event WHERE id = '$thisId'";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUMROWS($result);
-	
-	if ($numberOfRows > 0) 
-	{  
+
+	if ($numberOfRows > 0)
+	{
 		$i=0;
 		$thisId = MYSQL_RESULT($result,$i,"id");
 		$thisObject = MYSQL_RESULT($result,$i,$object);
@@ -699,18 +697,18 @@ function editObjectEventsForm($object, $title, $thisId)
 		$thisNote = MYSQL_RESULT($result,$i,"note");
 		$thisType = MYSQL_RESULT($result,$i,"type");
 ?>
-<form name="<?=$object?>EventEnterForm" method="POST" action="updateObjectEvent.php">
-<input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
-<input type="hidden" name="this<?=$fileName?>Field" value="<? echo $thisObject; ?>">
-<input type="hidden" name="object" value="<? echo $object; ?>">
+<form name="<?=$object?>EventEnterForm" method="post" action="updateObjectEvent.php">
+<input type="hidden" name="thisIdField" value="<? echo $thisId; ?>" />
+<input type="hidden" name="this<?=$fileName?>Field" value="<? echo $thisObject; ?>" />
+<input type="hidden" name="object" value="<? echo $object; ?>" />
 <table>
 	<tr valign="top" height="20">
 		<td align="right"> <b> <?=$title?> :  </b> </td>
-		<td><?=$thisObject?></td> 
+		<td><?=$thisObject?></td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date :  </b> </td>
-		<td> <input type="text" name="thisDateField" size="20" value="<?=$thisDate?>">  </td> 
+		<td> <input type="text" name="thisDateField" size="20" value="<?=$thisDate?>" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Date modifier :  </b> </td>
@@ -718,11 +716,11 @@ function editObjectEventsForm($object, $title, $thisId)
 		<option <? if ($thisStatus == 'book'){echo selected;} ?> value="book">Book</option>
 		<option <? if ($thisStatus == 'seen'){echo selected;} ?> value="seen">Seen</option>
 		<option <? if ($thisStatus == 'current'){echo selected;} ?> value="current">Current</option>
-		</select> </td> 
+		</select> </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Note :  </b> </td>
-		<td> <input type="text" name="thisNoteField" size="60" value="<?=$thisNote ?>">  </td> 
+		<td> <input type="text" name="thisNoteField" size="60" value="<?=$thisNote ?>" />  </td>
 	</tr>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Event type :  </b> </td>
@@ -734,11 +732,11 @@ function editObjectEventsForm($object, $title, $thisId)
 		<option <? if ($thisType == 'scrap'){echo selected;} ?> value="scrap">Scrapped</option>
 		<option <? if ($thisType == 'sold'){echo selected;} ?> value="sold">Sold</option>
 		<option <? if ($thisType == 'sparepool'){echo selected;} ?> value="sparepool">In sparepool</option>
-		</select></td> 
+		</select></td>
 	</tr>
 </table>
 
-<input type="submit" name="update<?=$title?>_eventForm" value="Enter <? echo str_replace('_',' ',$object);?> event">
+<input type="submit" value="Enter <? echo str_replace('_',' ',$object);?> event" />
 </form>
 <?
 	} /// end if
@@ -753,7 +751,7 @@ function editObjectEventsForm($object, $title, $thisId)
 
 function drawLiveryRow($thisLivery)
 {
-?>			
+?>
 	<tr valign="top" height="20">
 		<td align="right"> <b> Livery :  </b> </td>
 		<td><select name="thisLiveryField">
@@ -761,19 +759,19 @@ function drawLiveryRow($thisLivery)
 <?
 	$result = MYSQL_QUERY("SELECT * FROM livery ORDER BY name ASC");
 	$numberOfRows = MYSQL_NUM_ROWS($result);
-	
+
 	for ($i = 0; $i < $numberOfRows; $i++)
 	{
 		$thisObjectId = MYSQL_RESULT($result,$i,"livery_id");
 		$thisName = MYSQL_RESULT($result,$i,"name");
-		
+
 		echo "<option ";
-		
+
 		if ($thisObjectId == $thisLivery)
 		{
 			echo "selected ";
 		}
-		
+
 		echo "value=\"$thisObjectId\">$thisName</option>";
 	}
 		?>
