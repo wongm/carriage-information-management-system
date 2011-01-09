@@ -1,13 +1,13 @@
-<?php 
+<?php
 
 /**
  * railcarFunctions.php
- * 
+ *
  * Functions that mangle around data related to railcars
  * accepts arrays and outputs XHTML or XHTML MP in most cases.
- * 
+ *
  * few manapulation functions though.
- * 
+ *
  * Marcus Wong
  * May 2008
  *
@@ -38,11 +38,11 @@ function getRailcar($car)
 
 /**
  * outputs a XHTML page for a railcar
- * includes the title and current type / code, present railcar set it is in, 
- * short description of current railcar type, page content, 
+ * includes the title and current type / code, present railcar set it is in,
+ * short description of current railcar type, page content,
  * and a table with all events that have happened to railcar
- * railcar movements, railcar only events, railcar conversions, 
- * and carset events when the car was part of the set. 
+ * railcar movements, railcar only events, railcar conversions,
+ * and carset events when the car was part of the set.
  * outputs 'page not found' if invalid type given
  * @param car the railcar ID of the page should be output
  */
@@ -57,21 +57,20 @@ function drawRailcar($result)
 		extract($result);
 		// draw page
 		drawTitle("$type railcar $id");
-		
+
 		getDescription("<i>$typedescription</i></p>");
 		getDescription('Livery: '.$livery);
 		getDescription('Status: '.getStatus($status));
 		getDescription($content);
-		
+
 		$events = getEventsOfType('railcar_event', "railcar = '$id'");
 		if (sizeof($events) > 0)
 		{
 			echo '<h4>Events</h4>';
-			print_r($events);
 			drawObjectEvents(formatRailcarEvents($events));
 		}
 		//drawObjectEvents(formatRailcarEvents(getRailcarEvents($car)));
-		
+
 		$photos = getObjectmages("railcars/$id");
 		if (sizeof($photos) > 0)
 		{
@@ -85,11 +84,11 @@ function getRailcarType($type)
 	$result = getObject('railcar_type', $type);
 	return $result;
 }
-	
+
 
 /**
  * outputs a XHTML page for a type of railcar
- * includes the title, short description, page content, 
+ * includes the title, short description, page content,
  * and a table with links to all the current and former railcars with this CODE/ TYPE
  * outputs 'page not found' if invalid type given
  * @param type the railcar type page to be output
@@ -114,7 +113,7 @@ function drawRailcarType($result)
 		}
 		echo "\n";
 		getDescription($content);
-		
+
 		$currentMembers = getAllObjectsOfTable('railcar', '', 'o.id ASC' , $id);
 		if (sizeof($currentMembers) != 0)
 		{
@@ -126,28 +125,28 @@ function drawRailcarType($result)
 
 /**
  * formats an array of events to be more readable
- * @param dataarray the events array to be modified. PlainDate, Date, 
- * Why (sighting, book date, ect), Note about event, 
+ * @param dataarray the events array to be modified. PlainDate, Date,
+ * Why (sighting, book date, ect), Note about event,
  * railcar type Converted to, railcar set added to, type of event
  * @return formatted event array. 2 elements are formatted date, and formatted text.
  */
 function formatRailcarEvents($dataarray)
 {
 	$numberOfRows = sizeof($dataarray);
-	
+
 	for ($i = 0; $i<$numberOfRows; $i++)
-	{	
+	{
 		// only display non-null dates that are not special 'current' events
 		if ($dataarray[$i][1] != '' AND $dataarray[$i][2] != 'current')
 		{
 			// setup date of event
 			$date = $dataarray[$i][1];
-			
+
 			if($dataarray[$i][2] == 'seen')
 			{
 				$date .= ' (sighting)';
 			}
-			
+
 			// check for events that follow from each other for new constructions
 			if ($dataarray[$i][1] == $dataarray[$i+1][1] AND ($i == 0 OR $i == 1))
 			{
@@ -216,7 +215,7 @@ function formatRailcarEvents($dataarray)
 			{
 				$details = $dataarray[$i][3];
 			}
-			
+
 			$date = str_replace('1 January, 0001', 'Entered service', $date);
 			$eventArray[] = array($date, $details);
 		}
