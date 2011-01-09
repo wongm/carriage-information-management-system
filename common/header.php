@@ -1,7 +1,20 @@
-<?php 
+<?php
 include_once("vlinecars-definitions.php");
 include_once("vlinecars-formatting-functions.php");
 include_once("formatting-functions.php");
+
+// don't display errors
+$server = $_SERVER['HTTP_HOST'];
+if ($server == 'cims' OR $server == 'localhost' OR isset($_GET['wongm']))
+{
+	$editablelinkforadmin = true;
+	//error_reporting(E_ALL);
+}
+else
+{
+	$editablelinkforadmin = false;
+	error_reporting(0);
+}
 
 //start timer
 $time = round(microtime(), 3);
@@ -16,11 +29,11 @@ $time = round(microtime(), 3);
 <script type="text/javascript" src="/js/jquery-1.2.2.pack.js"></script>
 <script type="text/javascript" src="/js/ddaccordion.js"></script>
 <script type="text/javascript" src="/js/zenphoto.js"></script>
-<script type="text/javascript">//<![CDATA[ 
+<script type="text/javascript">//<![CDATA[
 ddaccordion.init({
         headerclass: "xpand", //Shared CSS class name of headers group that are xpand
         contentclass: "menuitem", //Shared CSS class name of contents group
-        collapseprev: true, //Collapse previous content (so only one open at any time)? true/false 
+        collapseprev: true, //Collapse previous content (so only one open at any time)? true/false
         defaultexpanded: [<?=getMenuIndex($pageTitle)?>], //index of content(s) open by default [index1, index2, etc]. [] denotes no content
         animatedefault: false, //Should contents open by default be animated into view?
         persiststate: false, //persist state of opened contents within browser session?
@@ -30,7 +43,7 @@ ddaccordion.init({
 })//]]></script>
 <link href="/css/vlinecars.css" rel="stylesheet" type="text/css" />
 </head>
-<body class="ThreeColumnFixedHeader">
+<body>
 <?php printBasicAdminToolbox($editLink) ?>
 <table id="container"><a name="top" id="top"></a>
 <tr><td id="header" colspan="2">

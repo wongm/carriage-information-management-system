@@ -373,5 +373,4 @@ function highlight($keyword, $name)
 	}
 	return $text;
 }	// end function
-
 ?>

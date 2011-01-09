@@ -11,9 +11,17 @@ Welcome
 <?php 
 include_once('midbit.php'); 
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+	var rand = Math.floor(<?php echo RANDOM_MAX; ?>*Math.random() + 1);
+	$("#randomimage").attr("src", '/images/frontpage/' + rand + '.jpg');
+});
+</script>
+<img class="photoright" id="randomimage" alt="Random image" title="Random image" />
 <div id="home">
 <h2>Welcome</h2>
 <p><?php printPageContent(); ?></p>
+<div class="clearfloat"></div>
 <h3>Recent updates</h3>
 <?php
 while (next_news() && $i < 3): ;?> 

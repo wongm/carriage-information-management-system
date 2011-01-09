@@ -18,7 +18,7 @@
 .photoright {
 	float: right;
 	clear: none;
-	margin: 5px 10px;
+	margin: 5px 0 5px 15px;
 }
 
 a:link {
@@ -38,10 +38,10 @@ a:active {
 body  {
 	font-family: sans-serif;
 	font-size: 12px;
-	background-color: #FFFFFF;
-	margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
+	background-color: white;
+	margin: 0;
 	padding: 0;
-	text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
+	text-align: center;
 	color: #000000;
 }
 #container { 
@@ -96,6 +96,10 @@ body  {
 	margin-right: 200px; /* the right and left margins on this div element creates the two outer columns on the sides of the page. No matter how much content the LeftColumn divs contain, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the LeftColumn spaces when the content in each LeftColumn ends. */
  /* remember that padding is the space inside the div box and margin is the space outside the div box */
 } 
+
+#mainContent p, #mainContent table {
+	padding-left: 5px;
+}
 
 .mainContentHeading {
 	font-size: 16px;
@@ -162,48 +166,48 @@ h1 {
 	padding:.1em 0 0;
 }
 h2 {
-	font-size:24px;
+	font-size:26px;
 	text-align: left;
 	margin: 0 0 5px 0;
 }
 h3 {
-	font-size:20px; 
+	font-size:17px; 
 }
 h4 {
-	font-size:15px;
+	font-size:14px;
 	margin: 1.2em 0 0.5em;
 }
 
 /* Sidebar menu
 ------------------------------ */
 .arrowlistmenu {
-	width: 165px; /*width of accordion menu*/
+	width: 165px;
 }
 #LeftColumn .arrowlistmenu {
 	*margin-top: -28px; /* IE7 and below */
 }
-.arrowlistmenu .menuheader { /*CSS class for menu headers in general (expanding or not!)*/
+.arrowlistmenu .menuheader {
 	font: bold 14px Arial;
 	color: white;
 	background: #000000 url(../images/titlebar.png) repeat-x center left;
-	margin-bottom: 10px; /*bottom spacing between header and rest of content*/
+	margin-bottom: 10px;
 	text-transform: uppercase;
-	padding: 4px 0 4px 10px; /*header text is indented 10px*/
+	padding: 4px 0 4px 5px;
 	/*cursor: hand;)*/
 	cursor: pointer;
 }
-.arrowlistmenu .openheader { /*CSS class to apply to xpand header when it's expanded*/
+.arrowlistmenu .openheader {
 	background-image: url(../images/titlebar-active.png);
 	background-color:#990099
 }
-.arrowlistmenu ul { /*CSS for UL of each sub menu*/
+.arrowlistmenu ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	margin-bottom: 8px; /*bottom spacing between each UL and rest of content*/
+	margin-bottom: 8px;
 }
 .arrowlistmenu ul li {
-	padding-bottom: 2px; /*bottom spacing between menu items*/
+	padding-bottom: 2px;
 	padding-left: 5px;
 }
 
@@ -211,8 +215,8 @@ h4 {
 	color: #FFFFFF;
 	display: block;
 	padding: 2px 0;
-	padding-left: 19px;/* padding-left: 19px; /*link text is indented 19px*/
-	background: url(../images/arrowbullet.png) no-repeat center left; /*custom bullet list image*/
+	padding-left: 19px;
+	background: url(../images/arrowbullet.png) no-repeat center left;
 	text-decoration: none;
 	font-weight: bold;
 	border-bottom: 1px solid #dadada;
@@ -222,7 +226,7 @@ h4 {
 	color: #FFFFFF;
 }
 
-.arrowlistmenu ul li a:hover{ /*hover state CSS*/
+.arrowlistmenu ul li a:hover{
 	color: #000000; 
 	background-color: #F3F3F3;
 }
@@ -246,12 +250,6 @@ h4 {
 	width: 12em;
 	text-align: center;
 }
-.linedTable .x {
-	background-color: white;
-}
-.linedTable .y {
-	background-color: #F5F7F5;
-}
 .centeredTable td{
 	padding: 5px 10px;
 	text-align: center;
@@ -263,6 +261,16 @@ h4 {
 }
 #LeftColumn p {
 	margin:1px;
+}
+
+.datatable td {
+	padding: .3em 15px .3em 5px;	
+}
+.datatable tr, .linedTable .x {
+	background: #F5F7F5;
+}
+.linedTable .y, .datatable tr:nth-child(even) {
+	background: #F9F7F9;
 }
 
 /* Lighbox

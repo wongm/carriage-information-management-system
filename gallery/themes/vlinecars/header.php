@@ -21,7 +21,7 @@ else
 {
 	$pagelink = $_GET['title'];
 	$pagetype = $_GET['type'];
-	
+
 	// work out what menu item should be opened
 	switch ($pagetype)
 	{
@@ -47,13 +47,13 @@ else
 					$selectedTabId = MISC_MENU_TAB;
 					break;
 			}
-			
+
 			$pageTitle = str_replace(" - News", "", $pageTitle);
 			break;
 		case 'operations':
 			$selectedTabId = OPERATIONS_MENU_TAB;
-			$pageTitle = str_replace(" - News", "", $pageTitle);	
-			
+			$pageTitle = str_replace(" - News", "", $pageTitle);
+
 			// if the parent page
 			if ($pagelink != 'operations' && strpos($pageTitle, '404 Page Not Found') === false)
 			{
@@ -95,7 +95,7 @@ ddaccordion.init({
 <?php zenJavascript(); ?>
 <?php printRSSHeaderLink('Gallery',gettext('Gallery RSS')); ?>
 </head>
-<body class="ThreeColumnFixedHeader">
+<body>
 <?php printAdminToolbox(); ?>
 <table id="container"><a name="top" id="top"></a>
 <tr><td id="header" colspan="2">
