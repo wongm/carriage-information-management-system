@@ -7,7 +7,7 @@ $sql = "SELECT   * FROM carriage_type_family";
 $result = MYSQL_QUERY($sql);
 $numberOfRows = MYSQL_NUM_ROWS($result);
 
-echo '<a href="enterNewcarriageType-Family.php">Add new carriage type - family mapping</a><hr/>';
+echo '<a href="enterNewCarriageType-Family.php">Add new carriage type - family mapping</a><hr/>';
 
 if ($_REQUEST['deleted'])
 {
