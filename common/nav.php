@@ -42,6 +42,7 @@ else
 <li><a href="/carsets/h-type">H Type Carriage Sets</a></li>
 <li><a href="/carsets/n-type">N Type Carriage Sets</a></li>
 <li><a href="/carsets/s-type">S Type Carriage Sets</a></li>
+<li><a href="/carsets/z-type">Z Type Carriage Sets</a></li>
 </ul>
 <p class="<?php echo $navclass; ?>">Locomotives</p>
 <ul class="menuitem">
