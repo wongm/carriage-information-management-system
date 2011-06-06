@@ -52,12 +52,12 @@ function drawCarsetType($type)
 		
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<h4>Current members</h4>';
+			echo '<h4>Current fleet</h4>';
 			drawObjectsOfType($currentMembers, '', CARSET_NUMBER_PAGE);
 		}
 		if (sizeof($pastMembers) != 0)
 		{
-			echo '<h4>Past members</h4>';
+			echo '<h4>Past fleet</h4>';
 			drawObjectsOfType($pastMembers, 'yes', CARSET_NUMBER_PAGE);
 		}
 	}
@@ -88,12 +88,12 @@ function drawCarsetTypeMobile($type)
 	
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<hr/><p>Current members:</p>';
+			echo '<hr/><p>Current fleet:</p>';
 			drawObjectsOfTypeMobile($currentMembers, '', 'mcarsets.php?set=');
 		}
 		if (sizeof($pastMembers) != 0)
 		{
-			echo '<p>Past members:</p>';
+			echo '<p>Past fleet:</p>';
 			drawObjectsOfTypeMobile($pastMembers, 'yes', 'mcarsets.php?set=');
 		}
 	}
@@ -180,14 +180,14 @@ function drawCarset($set, $result)
 		$currentMembers = getObjectsOfCode('carriage_carset', 'current', $id, 'position ASC, carriage ');
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<h4>Current members</h4>';
+			echo '<h4>Current fleet</h4>';
 			drawCarriagesOfCarset($currentMembers, ' - ', CARRIAGE_NUMBER_PAGE);
 		}
 		
 		$pastMembers = getObjectsOfCode('carriage_carset', 'past', $id, 'position ASC, carriage ');
 		if (sizeof($pastMembers) != 0)
 		{
-			echo '<h4>Past members</h4>';
+			echo '<h4>Past fleet</h4>';
 			drawCarriagesOfCarset($pastMembers, ' - ', CARRIAGE_NUMBER_PAGE);
 		}
 		
@@ -226,7 +226,7 @@ function drawCarsetMobile($set)
 	
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<p>Current members:<br/>';
+			echo '<p>Current fleet:<br/>';
 			drawCarriagesOfCarsetMobile($currentMembers, '<br/>', 'mcarriages.php?car=');
 			echo '</p>';
 		}

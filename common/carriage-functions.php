@@ -171,12 +171,12 @@ function drawCarriageType($type)
 		
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<h4>Current members</h4>';
+			echo '<h4>Current fleet</h4>';
 			drawObjectsOfType($currentMembers, '', CARRIAGE_NUMBER_PAGE);
 		}
 		if (sizeof($pastMembers) != 0)
 		{
-			echo '<h4>Past members</h4>';
+			echo '<h4>Past fleet</h4>';
 			drawObjectsOfType($pastMembers, 'yes', CARRIAGE_NUMBER_PAGE);
 		}
 	}
@@ -207,13 +207,13 @@ function drawCarriageTypeMobile($type)
 		
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<hr/><p>Current members:<br/>';
+			echo '<hr/><p>Current fleet:<br/>';
 			drawObjectsOfTypeMobile($currentMembers, '', 'mcarriages.php?car=');
 			echo '</p>';
 		}
 		if (sizeof($pastMembers) != 0)
 		{
-			echo '<p>Past members:<br/>';
+			echo '<p>Past fleet:<br/>';
 			drawObjectsOfTypeMobile($pastMembers, 'yes', 'mcarriages.php?car=');
 			echo '</p>';
 		}

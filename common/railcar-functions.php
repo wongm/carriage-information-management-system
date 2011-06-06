@@ -56,7 +56,14 @@ function drawRailcar($result)
 	{
 		extract($result);
 		// draw page
-		drawTitle("$type railcar $id");
+		if (strtolower($type) == 'vlocity')
+		{
+			drawTitle("$type set $id");
+		}
+		else
+		{
+			drawTitle("$type railcar $id");
+		}			
 
 		getDescription("<i>$typedescription</i></p>");
 		getDescription('Livery: '.$livery);
@@ -117,7 +124,7 @@ function drawRailcarType($result)
 		$currentMembers = getAllObjectsOfTable('railcar', '', 'o.id ASC' , $id);
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<h4>Current members</h4>';
+			echo '<h4>Current fleet</h4>';
 			drawObjectsOfType($currentMembers, '', RAILCAR_NUMBER_PAGE);
 		}
 	}
