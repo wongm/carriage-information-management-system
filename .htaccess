@@ -3,26 +3,61 @@
 #		First make a copy of this file as 'oldhtaccess' in the zp-core folder so setup can test for unmodified files
 #		Update the above and the define in setup.php
 
+DirectoryIndex index.html index.php
+
+AuthType Basic
+AuthName "Admin"
+require valid-user
+
+<Files "index.html">
+  # All access controls and authentication are disabled
+  # in this directory
+  Satisfy Any
+  Allow from all
+</Files>
+
+<Files "favicon.ico">
+  # All access controls and authentication are disabled
+  # in this directory
+  Satisfy Any
+  Allow from all
+</Files>
+
+<Files "">
+  # All access controls and authentication are disabled
+  # in this directory
+  Options -Indexes
+  Satisfy Any
+  Allow from all
+</Files>
+
+# END TEMP HACK
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
   
   RewriteBase /
   
+  #### standard redirect to avoid http://www.vlinecars.com 
+  RewriteCond %{HTTP_HOST} ^www.vlinecars\.com$ [NC]
+  RewriteRule ^(.*)$ http://vlinecars.com/$1 [R=301,L]
+  
   RewriteRule ^admin/?$       										gallery/zp-core [L,QSA]
   
+  # START TEMP HACK
   # 404 - Page not found
-  ErrorDocument 404 /404.html 
+  # ErrorDocument 404 /404.html 
   
   # 400 - Bad request
   # 500 - Internal Server Error 
-  ErrorDocument 400 /error.html 
-  ErrorDocument 500 /error.html 
+  # ErrorDocument 400 /error.html 
+  # ErrorDocument 500 /error.html 
   
   # 401 - Authorization Required
   # 403 - Forbidden directory
-  ErrorDocument 401 /forbid.html 
-  ErrorDocument 403 /forbid.html 
+  # ErrorDocument 401 /forbid.html 
+  # ErrorDocument 403 /forbid.html 
+  # END TEMP HACK
   
   RewriteRule ^index.php?$       									gallery/index.php?p=home [L,QSA]
   
@@ -82,4 +117,7 @@
   # make parent pages use Zenphoto as CMS
   RewriteRule ^locomotives/?$       					gallery/index.php?p=pages&type=misc&title=locomotives [L,QSA]
   RewriteRule ^locomotive/?$       						gallery/index.php?p=pages&type=misc&title=locomotives [L,QSA]
+
+  RewriteRule ^liveries/?$       						liveries-tool.php [L,QSA]
 </IfModule>
+AuthUserFile "/home/mattyj/.htpasswds/public_html/vlinecars.com/passwd"
