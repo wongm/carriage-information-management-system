@@ -92,6 +92,7 @@ else
 <li><a href="/forums" target="_blank">Forums</a></li>
 <li><a href="/misc/contact">Contact Us</a></li>
 <li><a href="/misc/glossary">Glossary</a></li>
+<li><a href="/liveries">Liveries</a></li>
 <li><a href="/misc/links">Links</a></li>
 <li><a href="/misc/sitemap">Site Map</a></li>
 </ul>

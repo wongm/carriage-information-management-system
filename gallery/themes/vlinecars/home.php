@@ -42,12 +42,11 @@ while (next_news() && $i < 3): ;?>
 <table class="centeredTable">
 <tbody>
 
-
 <?php 
-$latestalbums = getAlbumStatistic(6, "latest");
+$latestalbums = query_full_array("SELECT i.filename, i.date, a.folder, a.title FROM " . prefix('images'). " i INNER JOIN " . prefix('albums'). " a ON i.albumid = a.id GROUP BY i.albumid, DATE(i.date) ORDER BY i.date DESC LIMIT 6");
+$i = 1;
 
 foreach ($latestalbums as $latestalbum) {
-	$i++;
 	
 	if (($i % 3) == 1)
 	{
@@ -57,30 +56,29 @@ foreach ($latestalbums as $latestalbum) {
 	$folderpath = "/gallery/" . $latestalbum['folder'];
 	$foldername = "";
 	$splitfoldernames = str_replace('-', ' ', split('/', $latestalbum['folder']));
+	$thumbnailURL = "/gallery/" . $latestalbum['folder'] . "/image/thumb/" . $latestalbum['filename'];
 	
 	foreach ($splitfoldernames as $foldernameitem)
 	{
 		if (strlen($foldername) > 0)
 		{
-			$foldername .= " - ";
+			$foldername .= " &gt; ";
 		}
 		$foldername .= ucfirst($foldernameitem);
 	}
 	
-	$images = getImageStatistic(1, "latest", $latestalbum['folder']);
-	
-	foreach ($images as $image) {
-		echo '<td class="image">';
-		echo "<a href=\"" . htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">\n";
-		echo "<img src=\"".htmlspecialchars($image->getThumb())."\" alt=\"" . html_encode($foldername) . "\" /></a>\n";
-		echo "<h4><a href=\"".htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">$foldername</a></h4>\n";
-		echo "<small>". zpFormattedDate(getOption('date_format'),strtotime($image->getDateTime()))."</small>";
-	}
-	
+	echo '<td class="image">';
+	echo "<a href=\"" . htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">\n";
+	echo "<img src=\"" . $thumbnailURL . "\" alt=\"" . html_encode($foldername) . "\" /></a>\n";
+	echo "<h4><a href=\"".htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">$foldername</a></h4>\n";
+	echo "<small>". zpFormattedDate(getOption('date_format'),strtotime($latestalbum['date']))."</small>";
+		
 	if (($i % 3) == 0)
 	{
 		echo "</tr>";
 	}
+	
+	$i++;
 }
 ?>
 </tbody></table>

@@ -19,12 +19,18 @@ define ('LOCOMOTIVE_NUMBER_PAGE', '/locomotive/number/');
 define ('LOCOMOTIVE_CLASS_PAGE', '/locomotives/');
 
 define ('STATION_PAGE', '/region/station/');
-define ('LIVERY_PAGE', '/livery/#livery');
+define ('LIVERY_PAGE', '/liveries');
 
-define ('TIME_FORMAT', '%B %d, %Y');
+if (strtoupper(substr(PHP_OS, 0, 3)) == 'WIN') {
+	define ('DATE_FORMAT', '%#d %B, %Y');
+} else {
+	define ('DATE_FORMAT', '%e %B, %Y');
+}
 
 // site name
 define ('SITE_NAME', 'V/LineCars.com');
+
+define ('RANDOM_MAX', 9);
 
 // what positon are these links in the side menu bar?
 // this is so they drop down automatically for the relevant sections

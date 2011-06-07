@@ -122,7 +122,7 @@ function getAllObjectsOfTable($object, $status='', $order='', $specific='')
 						$thisService = MYSQL_RESULT($result,$i,"e.date");
 						if ($thisService != '')
 						{
-							$thisService = strftime(TIME_FORMAT, strtotime($thisService));
+							$thisService = strftime(DATE_FORMAT, strtotime($thisService));
 						}
 					}
 					$objectArray[] = array($thisId, '', $thisDescription, $thisStatus, $thisLivery, $thisService);
@@ -130,6 +130,33 @@ function getAllObjectsOfTable($object, $status='', $order='', $specific='')
 			}
 	}
 	
+	return $objectArray;
+}
+
+/**
+ * returns all liveries
+ * @return an array of objects.
+ */
+function getAllLiveries()
+{
+	$objectArray = array();
+	
+	$sql = "SELECT * FROM livery ORDER BY ordered DESC";
+	$result = MYSQL_QUERY($sql);	
+	$numberOfRows = MYSQL_NUM_ROWS($result);
+	
+	if ($numberOfRows > 0)
+	{
+		for ($i = 0; $i < $numberOfRows; $i++)
+		{
+			$thisId = MYSQL_RESULT($result,$i,"livery_id");
+			$thisName = MYSQL_RESULT($result,$i,"name");
+			$thisDescription = MYSQL_RESULT($result,$i,"description");
+			$thisContent = MYSQL_RESULT($result,$i,"content");
+			
+			$objectArray[] = array('id' => $thisId, 'name' => $thisName, 'description' => $thisDescription, 'content' => $thisContent);
+		}
+	}
 	return $objectArray;
 }
 
@@ -625,9 +652,9 @@ function getObject($object, $id)
 
 function getCarsetType($id)
 {
-	$sql = "SELECT * FROM carset_type, carset_type_family 
+	$sql = "SELECT * FROM carset_type
+	INNER JOIN carset_type_family ON carset_type_family.carset_type = carset_type.id 
 	WHERE id = '$id' 
-	AND carset_type_family.carset_type = carset_type.id 
 	LIMIT 0, 1";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
@@ -777,7 +804,7 @@ function getEventsOfType($database, $where, $order='')
 		$where = ' WHERE '.$where;
 	}
 	
-	$sql = "SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, id, why, note, type, $typeofobject FROM $database $where $order";
+	$sql = "SELECT date, id, why, note, type, $typeofobject FROM $database $where $order";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
 	
@@ -787,8 +814,8 @@ function getEventsOfType($database, $where, $order='')
 		{
 			$thisId = MYSQL_RESULT($result,$i,"id");
 			$thisObject = MYSQL_RESULT($result,$i,$typeofobject);
-			$thisPlainDate = MYSQL_RESULT($result,$i,"plaindate");
-			$thisDate = MYSQL_RESULT($result,$i,"fdate");
+			$thisPlainDate = MYSQL_RESULT($result,$i,"date");			
+			$thisDate = strftime(DATE_FORMAT, strtotime($thisPlainDate));
 			$thisWhy = MYSQL_RESULT($result,$i,"why");
 			$thisNote = MYSQL_RESULT($result,$i,"note");
 			$thisType = MYSQL_RESULT($result,$i,"type");
@@ -813,23 +840,23 @@ function getEventsOfType($database, $where, $order='')
 function getCarriageEvents($car)
 {
 	
-	$sql = "SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, 
+	$sql = "SELECT date, why, note, 
 		'-' AS `carset`, '-' AS carriage_type, type 
 		FROM carriage_event WHERE carriage = $car
 			UNION
-		SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, `carset`, 
+		SELECT date, why, note, `carset`, 
 		'-' AS carriage_type, 'moved' AS type 
 		FROM carriage_carset WHERE carriage = '$car'
 			UNION
-		SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, 
+		SELECT date, why, note, 
 		'-' AS `set`, carriage_type, 'converted' AS type 
 		FROM carriage_converted WHERE carriage = '$car'
 			UNION
-		SELECT DATE_FORMAT(carset_event.date, '%e %M, %Y') AS fdate, carset_event.date AS plaindate, carset_event.why, carset_event.note, 
+		SELECT carset_event.date, carset_event.why, carset_event.note, 
 		carriage_carset.carset AS `carset`, 'set' AS carriage_type, type  
 		FROM carset_event, carriage_carset 
 		WHERE carset_event.carset = carriage_carset.carset AND carriage_carset.carriage = '$car' 
-		ORDER BY plaindate ASC";
+		ORDER BY date ASC";
 		//echo $sql;
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
@@ -838,8 +865,8 @@ function getCarriageEvents($car)
 	{
 		for ($i = 0; $i < $numberOfRows; $i++)
 		{
-			$thisPlainDate = MYSQL_RESULT($result,$i,"plaindate");
-			$thisDate = MYSQL_RESULT($result,$i,"fdate");
+			$thisPlainDate = MYSQL_RESULT($result,$i,"date");
+			$thisDate = strftime(DATE_FORMAT, strtotime($thisPlainDate));
 			$thisWhy = MYSQL_RESULT($result,$i,"why");
 			$thisNote = MYSQL_RESULT($result,$i,"note");
 			$thisConvert = MYSQL_RESULT($result,$i,"carriage_type");
@@ -913,15 +940,15 @@ function getCarriageEvents($car)
  */
 function getCarsetEvents($set)
 {
-	$sql = "SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, '-' AS `carriage`, '-' AS carset_type, `type`  
+	$sql = "SELECT date, why, note, '-' AS `carriage`, '-' AS carset_type, `type`  
 		FROM carset_event WHERE `carset` = '$set'
 			UNION
-		SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, `carriage`, '-' AS carset_type, 'moved' AS type 
+		SELECT date, why, note, `carriage`, '-' AS carset_type, 'moved' AS type 
 		FROM carriage_carset WHERE `carset` = '$set'
 			UNION
-		SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, '-' AS `carriage`, carset_type, 'recoded' AS type  
+		SELECT date, why, note, '-' AS `carriage`, carset_type, 'recoded' AS type  
 		FROM carset_recoded WHERE `carset` = '$set'
-		ORDER BY plaindate ASC";
+		ORDER BY date ASC";
 		
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
@@ -930,8 +957,8 @@ function getCarsetEvents($set)
 	{
 		for ($i = 0; $i < $numberOfRows; $i++)
 		{
-			$thisPlainDate = MYSQL_RESULT($result,$i,"plaindate");
-			$thisDate = MYSQL_RESULT($result,$i,"fdate");
+			$thisPlainDate = MYSQL_RESULT($result,$i,"date");
+			$thisDate = strftime(DATE_FORMAT, strtotime($thisPlainDate));
 			$thisWhy = MYSQL_RESULT($result,$i,"why");
 			$thisNote = MYSQL_RESULT($result,$i,"note");
 			$thisConvert = MYSQL_RESULT($result,$i,"carset_type");
@@ -943,13 +970,13 @@ function getCarsetEvents($set)
 			// find out when the car is moved to ANOTHER set
 			if ($thisCarno != '-')
 			{
-				$sqlnextevent = "SELECT DATE_FORMAT(date, '%e %M, %Y') AS fdate, date AS plaindate, why, note, carriage, carset 
+				$sqlnextevent = "SELECT date, why, note, carriage, carset 
 					FROM carriage_carset WHERE carriage = '$thisCarno' AND`carset` != '$set' AND date > '$thisPlainDate' ORDER BY date ASC";
 				$resultnextevent = MYSQL_QUERY($sqlnextevent);
 				if (MYSQL_NUM_ROWS($resultnextevent) > 0)
 				{
-					$altPlainDate = MYSQL_RESULT($resultnextevent,0,"plaindate");
-					$altDate = MYSQL_RESULT($resultnextevent,0,"fdate");
+					$altPlainDate = MYSQL_RESULT($resultnextevent,0,"date");
+					$altDate = strftime(DATE_FORMAT, strtotime($altPlainDate));
 					$altNote = MYSQL_RESULT($resultnextevent,0,"note");
 					$altCar = getCarriageType($altPlainDate, $thisCarno).$thisCarno;
 					$altWhy = 'removed';

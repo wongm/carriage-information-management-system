@@ -357,7 +357,8 @@ function printBasicAdminToolbox($editLink)
 <h3><a href="javascript:toggle('admin_data');">Admin Toolbox</a></h3>
 </div><div id="admin_data" style="display: none;">
 <ul>
-<li><a href="/gallery/zp-core/admin.php">Gallery Admin</a></li>
+<li><a href="/gallery/zp-core/admin.php">Admin</a></li>
+<li><a href="/gallery/zp-core/admin-options.php?tab=general">Options</a></li>
 <li><a href="/backend">Carriages</a></li>
 <?php
 if (sizeof($editLink) > 1)
