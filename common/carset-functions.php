@@ -159,6 +159,13 @@ function drawCarset($set, $result)
 		include_once("common/header.php");
 		
 		drawTitle("Carriage Set $type$set");
+				
+		$headerpic = strtolower("/images/headerpics/$type$set.jpg");
+		if (file_exists(".$headerpic"))
+		{
+			echo "<img class=\"photoright\" src=\"$headerpic\" alt=\"$type type carriage set\" title=\"$type type carriage set\">\n";
+		}
+		
 		getDescription("<i>$typedescription</i>");
 		getDescription('Livery: '.$livery);
 		getDescription('Status: '.getStatus($status));
@@ -180,14 +187,14 @@ function drawCarset($set, $result)
 		$currentMembers = getObjectsOfCode('carriage_carset', 'current', $id, 'position ASC, carriage ');
 		if (sizeof($currentMembers) != 0)
 		{
-			echo '<h4>Current fleet</h4>';
+			echo '<h4>Current consist</h4>';
 			drawCarriagesOfCarset($currentMembers, ' - ', CARRIAGE_NUMBER_PAGE);
 		}
 		
 		$pastMembers = getObjectsOfCode('carriage_carset', 'past', $id, 'position ASC, carriage ');
 		if (sizeof($pastMembers) != 0)
 		{
-			echo '<h4>Past fleet</h4>';
+			echo '<h4>Previous consist members</h4>';
 			drawCarriagesOfCarset($pastMembers, ' - ', CARRIAGE_NUMBER_PAGE);
 		}
 		
@@ -368,8 +375,7 @@ function formatCarsetEvents($dataarray)
 			}
 			// carriage moved sets
 			elseif ($dataarray[$i][5] != '-')
-			{
-				
+			{				
 				$details = "Carriage ".$dataarray[$i][5]." placed in set";
 			}
 			// stored
@@ -399,9 +405,22 @@ function formatCarsetEvents($dataarray)
 				$details = $dataarray[$i][3];
 			}
 			
-			$date = str_replace('1 January, 0001', 'Entered service', $date);
-			
-			$eventArray[] = array($date, $details);
+			if (strlen($details) > 0)
+			{
+				if ($dataarray[$i][0] == '0000-00-00')
+				{
+					if($dataarray[$i][2] == '')
+					{
+						$date = 'Currently in service';
+					}
+					else
+					{
+						$date = 'Entered service';
+					}
+				}
+				
+				$eventArray[] = array($date, $details);
+			}
 		}
 	}	//end for loop
 	return $eventArray;

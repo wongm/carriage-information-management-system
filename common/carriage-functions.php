@@ -308,8 +308,22 @@ function formatCarriageEvents($dataarray)
 				$details = $dataarray[$i][3];
 			}
 			
-			$date = str_replace('1 January, 0001', 'Entered service', $date);
-			$eventArray[] = array($date, $details);
+			if (strlen($details) > 0)
+			{
+				if ($dataarray[$i][0] == '0000-00-00')
+				{
+					if($dataarray[$i][2] == '')
+					{
+						$date = 'Currently in service';
+					}
+					else
+					{
+						$date = 'Entered service';
+					}
+				}
+				
+				$eventArray[] = array($date, $details);
+			}
 		}
 	}	//end for loop
 	return $eventArray;
