@@ -309,12 +309,12 @@ function getAllCarsets($status)
 		$status = " WHERE status = '$status'";
 	}
 	
-	$sql = "SELECT id AS carset, status, '-' AS carset_type, '0001-01-01' AS date, '-' AS description 
+	$sql = "SELECT id AS carset, status, '-' AS carset_type, '0001-01-01' AS date, '-' AS description, '' AS livery 
 			FROM carset $status 
 		UNION ALL
-			SELECT carset, '-' AS status, carset_type, date, carset_type.description AS description
-				FROM carset_recoded, carset, carset_type $status 
-				AND carset.id = carset_recoded.carset AND carset_recoded.carset_type = carset_type.id
+			SELECT carset, '-' AS status, carset_type, date, carset_type.description AS description, livery.name
+				FROM carset_recoded, carset, carset_type, livery $status 
+				AND carset.id = carset_recoded.carset AND carset_recoded.carset_type = carset_type.id AND livery.livery_id = carset.livery
 				ORDER BY carset ASC, date ASC";
 	$result = MYSQL_QUERY($sql);
 	$numberOfRows = MYSQL_NUM_ROWS($result);
@@ -327,38 +327,83 @@ function getAllCarsets($status)
 		{
 			$thisId = MYSQL_RESULT($result,$i,"carset");
 			$thisStatus = MYSQL_RESULT($result,$i,"status");
-			$thisId = MYSQL_RESULT($result,$i,"carset");
 			$thisType = MYSQL_RESULT($result,$i,"carset_type");
+			$thisLivery = MYSQL_RESULT($result,$i,"livery");
 			$thisDescription = str_replace('-', '', MYSQL_RESULT($result,$i,"description"));
+			
+			// skip forward if type of carriage is found
+			if ($thisId != $pastId AND $i < ($numberOfRows-1))
+			{
+				// for instances where no events exist
+				// so use defaults from UNION
+				$nextStatus = MYSQL_RESULT($result,$i+1,"status");	
+				$objectArray[] = array($thisId, $thisType, $thisDescription, $nextStatus, $thisLivery);
+			}
+			else if ($thisId != $pastId)
+			{
+				$objectArray[] = array($thisId, $thisType, $thisDescription, $thisStatus, $thisLivery);
+			}
+			
+			/*
 			
 			// skip forward if type of carriage is found
 			if ($thisId != $pastId AND $i > 1)
 			{
-				$pastType = MYSQL_RESULT($result,$i-1,"carset_type");
-				$objectArray[] = array($pastId, $pastType, $pastDescription, $thisStatus);
+				$pastType = MYSQL_RESULT($result,$i+1,"carset_type");
+				$pastStatus = MYSQL_RESULT($result,$i+1,"status");
+				
+				if ($pastType != '-')
+				{
+					echo "C $thisId pastType = $pastType<br>";
+					echo "$thisId nextType = $pastType<br>";
+					echo "$thisId thisType = $thisType<br><hr>";
+					
+					$objectArray[] = array($pastId, $pastType, $pastDescription, $thisStatus);
+				}
+				else
+				{
+					echo "B $thisId pastType = $pastType<br>";
+					echo "$thisId nextType = $pastType<br>";
+					echo "$thisId thisType = $thisType<br><hr>";
+					
+					$objectArray[] = array($pastId, $thisType, $pastDescription, $pastStatus);
+				}
 			}
 			elseif ($thisId == $pastId AND $numberOfRows <= 2)
 			{
+					echo "A $thisId pastType = $pastType<br>";
+					echo "$thisId nextType = $pastType<br>";
+					echo "$thisId thisType = $thisType<br><hr>";
 				$objectArray[] = array($pastId, $thisType, $pastDescription, $thisStatus);
 			}
 			
 			// last minute clean up
 			if ($i == $numberOfRows-1 AND $numberOfRows > 2)
 			{
-				$objectArray[] = array($thisId, $thisType, $thisDescription, $thisStatus);
+				if ($thisType != '-')
+				{
+					$objectArray[] = array($thisId, $thisType, $thisDescription, $thisStatus);
+				}
+				else
+				{
+					$pastType = MYSQL_RESULT($result,$i-1,"carset_type");
+					$objectArray[] = array($thisId, $pastType, $thisDescription, $thisStatus);
+				}				
 			}
+			
+			*/
 			
 			$pastId = $thisId;
 			$pastType = $thisType;
 			$pastDescription = $thisDescription;
 		}
+		sort($objectArray);
 	}
 	else
 	{
 		$objectArray = '';
 	}
 	
-	sort($objectArray);
 	return $objectArray;
 }
 
