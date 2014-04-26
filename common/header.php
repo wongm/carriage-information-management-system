@@ -48,7 +48,7 @@ ddaccordion.init({
 <table id="container"><a name="top" id="top"></a>
 <tr><td id="header" colspan="2">
 <div id="HeaderLogo">
-<h1><a href="/" alt="V/LineCars.com Home" title="V/LineCars.com Home"><img src="/images/vlinecarslogo.png" alt="V/LineCars.com Home" title="V/LineCars.com Home" width="154" height="80" class="HeaderLogo" /></a></h1>
+<h1><a href="/" alt="V/LineCars.com Home" title="V/LineCars.com Home"><img src="/images/vlinecarslogo.png" alt="V/LineCars.com Home" title="V/LineCars.com Home" width="350" height="77" class="HeaderLogo" /></a></h1>
 </div>
 <div id="HeaderSearch">
 <?php printGoogleSearchBox() ?>
@@ -57,7 +57,7 @@ ddaccordion.init({
 <tr><td colspan="2" id="subheader">
 <?php echo getPageBreadcrumbs($pageTitle); ?>
 </td></tr>
-<tr><td id="LeftColumn">
+<tr id="MainRow"><td id="LeftColumn">
 <?php include_once('nav.php');
 ?>
 </td>

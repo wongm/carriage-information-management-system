@@ -78,7 +78,6 @@ body  {
 }
 
 #LeftColumn {
-	float: left; /* since this element is floated, a width must be given */
 	width: 165px; /* the actual width of this div, in standards-compliant browsers, or standards mode in Internet Explorer will include the padding and border in addition to the width */
 	background: #8C8C96; /* the background color will be displayed for the length of the content in the column, but no further */
 	vertical-align:top;
@@ -95,7 +94,7 @@ body  {
 	width: 100%;
 	margin-right: 200px; /* the right and left margins on this div element creates the two outer columns on the sides of the page. No matter how much content the LeftColumn divs contain, the column space will remain. You can remove this margin if you want the #mainContent div's text to fill the LeftColumn spaces when the content in each LeftColumn ends. */
  /* remember that padding is the space inside the div box and margin is the space outside the div box */
-} 
+}
 
 #mainContent p, #mainContent table {
 	padding-left: 5px;
@@ -141,6 +140,10 @@ body  {
 
 img {
 	border: none;
+}
+
+#MainRow, #LeftColumn {
+	height: 100%;
 }
 
 /* Search
@@ -381,4 +384,10 @@ h4 {
 ------------------------------ */
 #home .centeredTable {
 	width: 100%;
+}
+
+#home h3 {
+	background-color: #990099;
+    color: white;
+    padding: 3px;
 }
