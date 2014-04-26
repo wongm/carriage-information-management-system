@@ -1,7 +1,7 @@
 <?php
 include_once('dbConnection.php');
 include_once('formatting-functions.php');
-include_once('./gallery/themes/vlinecars/search-functions.php');
+include_once('./gallery/themes/vlinecars/functions-search.php');
 include_once('./gallery/themes/vlinecars/vlinecars-functions.php');
 
 // check this location has images to show
@@ -13,23 +13,23 @@ function getObjectmages($location)
 	// for comma seperated individual images
 	if ($subLocation > 1)
 	{
-		$gallerySQL = "SELECT zen_albums.folder, zen_images.filename, zen_images.title, zen_images.id 
-			FROM zen_images
-			INNER JOIN zen_albums ON zen_images.albumid = zen_albums.id 
-			WHERE ( zen_images.filename = '".mysql_real_escape_string($location[0])."' ";
+		$gallerySQL = "SELECT zp_albums.folder, zp_images.filename, zp_images.title, zp_images.id 
+			FROM zp_images
+			INNER JOIN zp_albums ON zp_images.albumid = zp_albums.id 
+			WHERE ( zp_images.filename = '".mysql_real_escape_string($location[0])."' ";
 		for ($i = 1; $i < $subLocation; $i++)
 		{
-			$gallerySQL .= " OR zen_images.filename = '".$location[$i]."' ";
+			$gallerySQL .= " OR zp_images.filename = '".$location[$i]."' ";
 		}
-		$gallerySQL .= " ) ORDER BY zen_images.sort_order";
+		$gallerySQL .= " ) ORDER BY zp_images.sort_order";
 	}
 	// for album in the gallery 
 	else
 	{
-		$gallerySQL = "SELECT zen_albums.folder, zen_images.filename, zen_images.title, zen_images.id 
-			FROM zen_images
-			INNER JOIN zen_albums ON zen_images.albumid = zen_albums.id 
-			WHERE folder = '".mysql_real_escape_string($location[0])."' ORDER BY zen_images.sort_order";
+		$gallerySQL = "SELECT zp_albums.folder, zp_images.filename, zp_images.title, zp_images.id 
+			FROM zp_images
+			INNER JOIN zp_albums ON zp_images.albumid = zp_albums.id 
+			WHERE folder = '".mysql_real_escape_string($location[0])."' ORDER BY zp_images.sort_order";
 	}
 	$galleryResult = MYSQL_QUERY($gallerySQL, galleryDBconnect());
 	
@@ -43,10 +43,10 @@ function getObjectmages($location)
 
 function printFrontpageRecent()
 {
-	$sql = "SELECT * , zen_images.mtime as fdate FROM zen_images, zen_albums 
-		WHERE zen_images.albumid = zen_albums.id 
+	$sql = "SELECT * , zp_images.mtime as fdate FROM zp_images, zp_albums 
+		WHERE zp_images.albumid = zp_albums.id 
 		GROUP BY albumid 
-		ORDER BY zen_images.id DESC LIMIT 0,".FRONT_PAGE_MAX_IMAGES;
+		ORDER BY zp_images.id DESC LIMIT 0,".FRONT_PAGE_MAX_IMAGES;
 	$galleryResult = MYSQL_QUERY($sql, galleryDBconnect());	
 	
 	drawAlbums($galleryResult);
@@ -119,9 +119,12 @@ function drawObjectmages($locationPhotos, $path='')
 			
 			// old version
 			/*<td class="i"><a href="/gallery/<? echo $photoPath; ?>/<? echo $photoUrl; ?>.html?size=" target="new" ><img src="/gallery/cache/<? echo $photoPath; ?>/<? echo $photoUrl; ?>_150_cw150_ch150.jpg" alt="<? echo $photoTitle; ?>" title="<? echo $photoTitle; ?>" />*/
+			
+			$thumbUrl = replace_filename_with_cache_thumbnail_version($photoUrl);
+			$imageUrl = GALLERY_PATH."/cache/$photoPath/$thumbUrl";
 ?>
 <td class="i">
-	<a href="/gallery/<? echo $photoPath; ?>/<? echo $photoUrl; ?>.html?size=" target="new" ><img src="/gallery/<? echo $photoPath; ?>/image/thumb/<? echo $photoUrl; ?>" alt="<? echo $photoTitle; ?>" title="<? echo $photoTitle; ?>" /></a>
+	<a href="/gallery/<? echo $photoPath; ?>/<? echo $photoUrl; ?>.html?size=" target="new" ><img src="<? echo $imageUrl; ?>" alt="<? echo $photoTitle; ?>" title="<? echo $photoTitle; ?>" /></a>
 	<p><?=$photoTitle ?></p></td>
 <?		$j++;
 			$i++;
