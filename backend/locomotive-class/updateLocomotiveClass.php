@@ -5,9 +5,8 @@ include_once("../common/dbConnection.php");
 	$thisId = addslashes($_REQUEST['thisIdField']);
 	$thisDescription = addslashes($_REQUEST['thisDescriptionField']);
 	$thisContent = addslashes($_REQUEST['thisContentField']);
-	$thisClass = addslashes($_REQUEST['thisLocomotiveClassField']);
 
-	$sql = "UPDATE locomotive_class SET class = '$thisClass', description = '$thisDescription' , content = '$thisContent'  WHERE id = '$thisId'";
+	$sql = "UPDATE locomotive_class SET description = '$thisDescription' , content = '$thisContent'  WHERE id = '$thisId'";
 	$result = MYSQL_QUERY($sql);
 	
 	header("Location: editLocomotiveClass.php?id=$thisId&updated=true",TRUE,302);
