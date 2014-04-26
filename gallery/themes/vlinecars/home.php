@@ -14,7 +14,7 @@ include_once('midbit.php');
 <script type="text/javascript">
 $(document).ready(function(){
 	var rand = Math.floor(<?php echo RANDOM_MAX; ?>*Math.random() + 1);
-	$("#randomimage").attr("src", '/images/frontpage/' + rand + '.jpg');
+	$('#randomimage').attr('src', '/images/frontpage/' + rand + '.jpg');
 });
 </script>
 <img class="photoright" id="randomimage" alt="Random image" title="Random image" />
@@ -38,50 +38,67 @@ while (next_news() && $i < 3): ;?>
 	$i++;
   endwhile; 
 ?>
+<p><a href="/news">Complete List...</a></p>
 <h3>Updated galleries</h3>
 <table class="centeredTable">
 <tbody>
-
 <?php 
-$latestalbums = query_full_array("SELECT i.filename, i.date, a.folder, a.title FROM " . prefix('images'). " i INNER JOIN " . prefix('albums'). " a ON i.albumid = a.id GROUP BY i.albumid, DATE(i.date) ORDER BY i.date DESC LIMIT 6");
-$i = 1;
+$latestalbums = getAlbumStatistic(6, "latest");
+$i = 0;
 
-foreach ($latestalbums as $latestalbum) {
-	
-	if (($i % 3) == 1)
-	{
-		echo "<tr>";
-	}
+foreach ($latestalbums as $latestalbum) 
+{
+	$j = 1;
 	
 	$folderpath = "/gallery/" . $latestalbum['folder'];
 	$foldername = "";
 	$splitfoldernames = str_replace('-', ' ', split('/', $latestalbum['folder']));
-	$thumbnailURL = "/gallery/" . $latestalbum['folder'] . "/image/thumb/" . $latestalbum['filename'];
+	$albumTitle = $latestalbum['title'];
 	
 	foreach ($splitfoldernames as $foldernameitem)
 	{
 		if (strlen($foldername) > 0)
 		{
-			$foldername .= " &gt; ";
+			$foldername .= " - ";
 		}
-		$foldername .= ucfirst($foldernameitem);
-	}
-	
-	echo '<td class="image">';
-	echo "<a href=\"" . htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">\n";
-	echo "<img src=\"" . $thumbnailURL . "\" alt=\"" . html_encode($foldername) . "\" /></a>\n";
-	echo "<h4><a href=\"".htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">$foldername</a></h4>\n";
-	echo "<small>". zpFormattedDate(getOption('date_format'),strtotime($latestalbum['date']))."</small>";
 		
-	if (($i % 3) == 0)
-	{
-		echo "</tr>";
+		// magic logic to make sure the last item in the path is the actual folder title
+		if ($j++ == sizeof($splitfoldernames))
+		{
+			$foldername .= $albumTitle;
+		}
+		else
+		{
+			$foldername .= ucfirst($foldernameitem);
+		}		
 	}
 	
-	$i++;
-}
+	$images = getImageStatistic(1, "latest", $latestalbum['folder']);
+	
+	foreach ($images as $image) 
+	{
+		$i++;		
+		
+		if (($i % 3) == 1)
+		{
+			echo "<tr>";
+		}
+		
+		echo '<td class="image">';
+		echo "<a href=\"" . htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">\n";
+		echo "<img src=\"".htmlspecialchars($image->getThumb())."\" alt=\"" . html_encode($foldername) . "\" /></a>\n";
+		echo "<h4><a href=\"".htmlspecialchars($folderpath)."\" title=\"" . html_encode($foldername) . "\">$foldername</a></h4>\n";
+		echo "<small>Updated ". zpFormattedDate(getOption('date_format'),$image->get('mtime'))."</small>";
+	
+		if (($i % 3) == 0)
+		{
+			echo "</tr>";
+		}
+	}}
 ?>
+</tr>
 </tbody></table>
+<p><a href="/gallery/recent">Complete List...</a></p>
 </div>
 <?php
 include("footer.php"); 

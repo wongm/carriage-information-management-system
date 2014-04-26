@@ -60,8 +60,7 @@ else if ($pageType == '')
 	
 	if ( zp_loggedin() ) {
 		$adminOnlyText = '<p><a href="'.$nextURL.'/?caption=images">Uncaptioned images</a><br>
-			<a href="'.$nextURL.'/?caption=albums">Albums with uncaptioned images</a><br>
-			<a href="'.$nextURL.'/?double=">Duplicate images</a></p>';
+			<a href="'.$nextURL.'/?caption=albums">Albums with uncaptioned images</a>';
 	}
 }
 
