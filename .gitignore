@@ -13,3 +13,7 @@ gallery/rss-comments.php
 gallery/rss-news.php
 gallery/sitemap.php
 nexus
+images/frontpage/
+/images/
+gallery/zp-data/
+initial import.sql
