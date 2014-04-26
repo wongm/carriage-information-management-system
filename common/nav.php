@@ -69,6 +69,7 @@ else
 <li><a href="/operations/maintenance">Maintenance</a></li>
 <li><a href="/operations/accidents">Accidents And Derailments</a></li>
 </ul>
+<? /*
 <p class="<?php echo $navclass; ?>">Regions</p>
 <ul class="menuitem">
 <li><a href="/regions">Regions Index</a></li>
@@ -79,12 +80,15 @@ else
 <li><a href="/region/south-western">South Western Region</a></li>
 <li><a href="/region/western">Western Region</a></li>
 </ul>
+*/ ?>
 <p class="<?php echo $navclass; ?>">Media</p>
 <ul class="menuitem">
 <li><a href="/gallery">Photo Gallery</a></li>
 <li><a href="/gallery/recent">Recent Uploads</a></li>
 <li><a href="/gallery/page/search">Photo Search</a></li>
+<? /*
 <li><a href="">Video</a></li>
+*/ ?>
 </ul>
 <p class="<?php echo $navclass; ?>">Other</p>
 <ul class="menuitem">

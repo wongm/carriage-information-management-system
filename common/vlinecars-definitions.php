@@ -40,9 +40,9 @@ define ('CARSETS_MENU_TAB', '2');
 define ('LOCOMOTIVES_MENU_TAB', '3');
 define ('RAILCARS_MENU_TAB', '4');
 define ('OPERATIONS_MENU_TAB', '5');
-define ('REGIONS_MENU_TAB', '6');
-define ('GALLERY_MENU_TAB', '7');
-define ('MISC_MENU_TAB', '8');
+//define ('REGIONS_MENU_TAB', '6');
+define ('GALLERY_MENU_TAB', '6');
+define ('MISC_MENU_TAB', '7');
 
 
 // get what position in the sidebar a given item is
