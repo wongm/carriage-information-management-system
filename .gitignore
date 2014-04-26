@@ -1,0 +1,15 @@
+.svn
+common/dbConnection.php
+forums
+gallery/albums
+gallery/cache
+gallery/cache_html
+gallery/zp-core
+gallery/favicon.ico
+gallery/index.php
+gallery/robots.txt
+gallery/rss.php
+gallery/rss-comments.php
+gallery/rss-news.php
+gallery/sitemap.php
+nexus
