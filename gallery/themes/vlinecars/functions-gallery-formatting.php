@@ -153,7 +153,7 @@ function printEXIFData()
 
 		$hitCounterText .= "Week reset = ".$_zp_current_image->get('hitcounter_week_reset').", Month reset = ".$_zp_current_image->get('hitcounter_month_reset');
 	}
-
+	
 	if (sizeof($result) > 1 AND $result[EXIFDateTimeOriginal] != '')
 	{
 		$date = split(':', $result[EXIFDateTimeOriginal]);
@@ -171,10 +171,21 @@ function printEXIFData()
 		{
 			$dateLink = $fdate.'&nbsp;'.$ftime;
 		}
+		
+		if (strlen($result[EXIFArtist]) > 0)
+		{
+			$photographer = str_replace("Photographer: ", "", $result[EXIFArtist]);
+			$photographer = "Photographer: $photographer<br/>\n";
+		}
+		else
+		{
+			$photographer = "";
+		}
+		
 	?>
 <p class="exif">
 Taken with a <?=$result[EXIFModel] ?><br/>
-Date: <?=$dateLink;?><br/>
+<?=$photographer ?>Date: <?=$dateLink;?><br/>
 Exposure Time: <?=$result[EXIFExposureTime] ?><br/>
 Aperture Value: <?=$result[EXIFFNumber] ?><br/>
 Focal Length: <?=$result[EXIFFocalLength] ?><br/>
@@ -277,10 +288,10 @@ function printTruncatedImageTitle($editable=false) {
 	{
 		$imageTitle = getImageTitle();
 
-		if (strlen($imageTitle) > getOption('wongm_imagetitle_truncate_length'))
+		if (strlen($imageTitle) > 50)
 		{
 			//$imageTitle = "<abbr title=\"$imageTitle\">" . substr($imageTitle, 0, getOption('wongm_imagetitle_truncate_length')) . "</abbr>...";
-			$imageTitle = substr($imageTitle, 0, getOption('wongm_imagetitle_truncate_length')) . "...";
+			$imageTitle = substr($imageTitle, 0, 50) . "...";
 		}
 		echo "<span id=\"imageTitle\" style=\"display: inline;\">" . $imageTitle . "</span>\n";
 	}
