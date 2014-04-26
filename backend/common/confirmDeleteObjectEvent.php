@@ -55,7 +55,7 @@ else if ($numberOfRows>0) {
 <form name="carriage_eventEnterForm" method="post" action="deleteObjectEvent.php">
 <input type="hidden" name="thisIdField" value="<? echo $thisId; ?>">
 <input type="hidden" name="object" value="<? echo $object; ?>">
-<input type="submit" name="submitConfirmDeleteCarriage_eventForm" value="Delete  from Carriage_event">
+<input type="submit" name="submitConfirmDeleteCarriage_eventForm" value="Delete <?=$object ?> event">
 <input type="button" name="cancel" value="Go Back" onClick="javascript:history.back();">
 </form>
 
