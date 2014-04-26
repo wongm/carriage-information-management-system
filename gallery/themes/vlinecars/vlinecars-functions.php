@@ -21,7 +21,7 @@ define ('maxImagesPerPage', 24);
 define ('timeFormat', '%B %d, %Y %H:%M %p');
 define ('truncatedImageTitleLength', 40);
 define ('forumPhotoSize', 500);
-define ('thumbnailImageSize', 150);
+define ('thumbnailImageSize', 250);
 define ('GALLERY_PATH', '/gallery');
 define ('UPDATES_URL_PATH', '/gallery/recent');
 define ('SEARCH_URL_PATH', '/gallery/search');
@@ -39,7 +39,7 @@ else
 {
 	define ('MAXIMAGES_PERPAGE', 24);
 	define ('MAXALBUMS_PERPAGE', 24);
-	define ('THUMBNAIL_IMAGE_SIZE', 150);
+	define ('THUMBNAIL_IMAGE_SIZE', 250);
 	define ('MAXIMAGES_LOCATIONPAGE', 9);
 	DEFINE ('GALLERY_PATH', '/gallery');
 	define ('TIME_FORMAT', '%B %d, %Y %H:%M %p');
