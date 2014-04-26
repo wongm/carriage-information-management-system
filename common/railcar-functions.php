@@ -77,8 +77,9 @@ function drawRailcar($result)
 			drawObjectEvents(formatRailcarEvents($events));
 		}
 		//drawObjectEvents(formatRailcarEvents(getRailcarEvents($car)));
-
-		$photos = getObjectmages("railcars/$id");
+		
+		$folderForGallery = strtolower($type) . '/' . str_replace('vl', '', strtolower($id));		
+		$photos = getObjectmages($folderForGallery);
 		if (sizeof($photos) > 0)
 		{
 			drawObjectmages($photos);
